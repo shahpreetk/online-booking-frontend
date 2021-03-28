@@ -9,7 +9,7 @@ import ProfileCard from "../components/ProfileCard";
 const HomePage = () => {
   const authContext = useContext(AuthContext);
   useEffect(() => {
-    document.title = "Home - BookIt";
+    document.title = "Home | BookIt";
     authContext.loadUser();
     // eslint-disable-next-line
   }, []);
