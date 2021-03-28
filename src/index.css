@@ -1,0 +1,76 @@
+:root {
+  --amplify-primary-color: #a72329;
+  --amplify-primary-tint: #8c1f23;
+  --amplify-primary-shade: #8c1f23;
+  --amplify-font-family: "Josefin Sans", sans-serif;
+}
+
+body {
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Josefin Sans", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-weight: "500";
+  color: #475569 !important;
+  overflow-x: hidden;
+  background-color: #fefefe;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Cardo", serif !important;
+  color: #334155 !important;
+}
+
+::-moz-selection {
+  /* Code for Firefox */
+
+  background: #ffd8d2;
+}
+
+::selection {
+  background: #ffd8d2;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+.checkbox {
+  font-size: 18px;
+}
+
+.DayPickerKeyboardShortcuts_show__bottomRight::before {
+  border-right: 33px solid #a72329 !important;
+}
+
+.DateInput_input__focused {
+  border-bottom: 2px solid #a72329 !important;
+}
+
+.react-timerange-picker__wrapper {
+  border: thin solid #dbdbdb !important;
+  border-radius: 2px;
+}
+
+.react-timerange-picker__inputGroup {
+  height: 46px !important;
+  font-size: 19px !important;
+}
+
+.react-timerange-picker__inputGroup__input,
+.react-timerange-picker__inputGroup__input:focus,
+.react-timerange-picker__inputGroup__input:active,
+.react-timerange-picker__button,
+.react-timerange-picker__button:focus,
+.react-timerange-picker__button:active {
+  outline: none;
+  border: none;
+  box-shadow: none;
+}
