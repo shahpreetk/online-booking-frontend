@@ -5,7 +5,7 @@ import * as ROUTES from "../constants/routes";
 import { Button, Card, Container, Form } from "react-bootstrap";
 import styled from "styled-components";
 import AuthContext from "../context/auth/authContext";
-// import AlertContext from "../context/alert/alertContext";
+import toast from "react-hot-toast";
 
 const Styled = styled.div`
   .background-photo {
@@ -24,9 +24,8 @@ const LoginPage = () => {
   const isInvalid = password === "" || email === "";
   const history = useHistory();
   const authContext = useContext(AuthContext);
-  // const alertContext = useContext(AlertContext);
   const { login, error, clearErrors, isAuthenticated } = authContext;
-  // const { setAlert } = alertContext;
+
   const onChange = (e) => {
     setUser({
       ...user,
@@ -37,7 +36,7 @@ const LoginPage = () => {
   const onSubmit = (e) => {
     e.preventDefault();
     if (isInvalid) {
-      // setAlert("Please fill in all fields", "danger");
+      toast.error("Please fill in all fields");
     } else {
       login({ email, password });
     }
@@ -50,16 +49,10 @@ const LoginPage = () => {
       history.push("/booking");
     }
     if (error) {
-      // setAlert(error, "danger");
+      toast.error(error);
       clearErrors();
     }
-  }, [
-    clearErrors,
-    error,
-    // setAlert,
-    isAuthenticated,
-    history,
-  ]);
+  }, [clearErrors, error, isAuthenticated, history]);
   return (
     <>
       <Styled>

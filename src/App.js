@@ -1,6 +1,7 @@
 //@ts-check
 import React, { lazy, Suspense } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { Toaster } from "react-hot-toast";
 // Components
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -34,6 +35,7 @@ const App = () => {
         <Suspense fallback={<p>Loading...</p>}>
           <Header />
           {/* <Alerts /> */}
+          <Toaster position="bottom-center" />
           <Switch>
             <Route path={ROUTES.LOGIN} component={LoginPage} />
             <Route path={ROUTES.SIGN_UP} component={SignUpPage} />
