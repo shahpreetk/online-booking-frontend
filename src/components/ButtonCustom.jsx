@@ -30,7 +30,7 @@ const ButtonStyle = styled.div`
 }
 `;
 
-const ButtonCustom = ({ buttonContent, size, block }) => {
+const ButtonCustom = ({ buttonContent, size, block, parentfunction }) => {
   return (
     <>
       <ButtonStyle>
@@ -38,6 +38,7 @@ const ButtonCustom = ({ buttonContent, size, block }) => {
           className="custom-button shadow-sm border-0 rounded"
           size={size ? size : "sm"}
           block={block ? block : ""}
+          onClick={parentfunction}
         >
           {buttonContent}
         </Button>

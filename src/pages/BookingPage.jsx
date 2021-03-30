@@ -1,7 +1,7 @@
 //@ts-check
 import React, { useState, useEffect, useContext } from "react";
 import { Col, Container, Row, Card } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import ButtonCustom from "../components/ButtonCustom";
 import styled from "styled-components";
 import * as ROUTES from "../constants/routes";
@@ -11,6 +11,7 @@ import "react-dates/lib/css/_datepicker.css";
 import { SingleDatePicker } from "react-dates";
 import axios from "axios";
 import moment from "moment";
+import toast from "react-hot-toast";
 
 const Styled = styled.div`
   .auth-container {
@@ -23,17 +24,38 @@ const Styled = styled.div`
 `;
 
 const BookingPage = () => {
+  const history = useHistory();
   const [date, setDate] = useState(null);
   const [focused, setFocused] = useState(null);
   const [result, setResult] = useState(null);
   const authContext = useContext(AuthContext);
+  const FindAudiTime = () => {
+    axios.get(`/baudis/${result}`).then((res) => {
+      if (res.data.length === 0) {
+        toast.error(
+          "Sorry no slots available for this date. Please select another date"
+        );
+      } else {
+        history.push(ROUTES.AUDI);
+      }
+    });
+  };
+
+  const FindTurfTime = () => {
+    axios.get(`/bturfs/${result}`).then((res) => {
+      if (res.data.length === 0) {
+        toast.error(
+          "Sorry no slots available for this date. Please select another date"
+        );
+      }
+    });
+  };
 
   useEffect(() => {
     document.title = "Book Now - BookIt";
     authContext.loadUser();
-    axios.get(`/baudis/${result}`).then((res) => console.log(res.data));
     // eslint-disable-next-line
-  }, [date]);
+  }, []);
 
   return (
     <>
@@ -66,13 +88,14 @@ const BookingPage = () => {
                       Book your event at our fully Air-Conditioned, 250 seating
                       + podium available auditorium now!
                     </Card.Text>
-                    <Link to={ROUTES.AUDI}>
-                      <ButtonCustom
-                        block={false}
-                        size="md"
-                        buttonContent="Book Audi"
-                      />
-                    </Link>
+                    {/* <Link to={ROUTES.AUDI}> */}
+                    <ButtonCustom
+                      block={false}
+                      size="md"
+                      parentfunction={FindAudiTime}
+                      buttonContent="Book Audi"
+                    />
+                    {/* </Link> */}
                   </Card.Body>
                 </Card>
               </Col>
@@ -90,6 +113,7 @@ const BookingPage = () => {
                       <ButtonCustom
                         block={false}
                         size="md"
+                        parentfunction={FindTurfTime}
                         buttonContent="Book Turf"
                       />
                     </Link>
