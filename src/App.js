@@ -19,8 +19,8 @@ const HomePage = lazy(() => import("./pages/HomePage"));
 const LoginPage = lazy(() => import("./pages/LoginPage"));
 const SignUpPage = lazy(() => import("./pages/SignUpPage"));
 const BookingPage = lazy(() => import("./pages/BookingPage"));
-// const BookAudi = lazy(() => import("./pages/BookAudi"));
-// const BookTurf = lazy(() => import("./pages/BookTurf"));
+const TimeAudi = lazy(() => import("./pages/TimeAudi"));
+const TimeTurf = lazy(() => import("./pages/TimeTurf"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 if (localStorage.token) {
@@ -42,8 +42,8 @@ const App = () => {
             <Route path={ROUTES.SIGN_UP} component={SignUpPage} />
             <Route path={ROUTES.HOME} component={HomePage} exact />
             <PrivateRoute path={ROUTES.BOOKING} component={BookingPage} exact />
-            {/* <PrivateRoute path={ROUTES.AUDI} component={BookAudi} /> */}
-            {/* <PrivateRoute path={ROUTES.TURF} component={BookTurf} /> */}
+            <PrivateRoute path={ROUTES.TIMEOFAUDI} component={TimeAudi} />
+            <PrivateRoute path={ROUTES.TIMEOFTURF} component={TimeTurf} />
             <Route component={NotFound} />
           </Switch>
           <Footer />

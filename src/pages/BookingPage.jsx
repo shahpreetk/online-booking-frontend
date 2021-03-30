@@ -1,7 +1,7 @@
 //@ts-check
 import React, { useState, useEffect, useContext } from "react";
 import { Col, Container, Row, Card } from "react-bootstrap";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import ButtonCustom from "../components/ButtonCustom";
 import styled from "styled-components";
 import * as ROUTES from "../constants/routes";
@@ -29,26 +29,43 @@ const BookingPage = () => {
   const [focused, setFocused] = useState(null);
   const [result, setResult] = useState(null);
   const authContext = useContext(AuthContext);
+
   const FindAudiTime = () => {
-    axios.get(`/baudis/${result}`).then((res) => {
-      if (res.data.length === 0) {
-        toast.error(
-          "Sorry no slots available for this date. Please select another date"
-        );
-      } else {
-        history.push(ROUTES.AUDI);
-      }
-    });
+    if (!result) {
+      return toast.error("Please select a date");
+    }
+    axios
+      .get(`/baudis/${result}`)
+      .then((res) => {
+        if (res.data.length === 0) {
+          toast.error(
+            "Sorry no slots available for this date. Please select another date"
+          );
+        } else {
+          localStorage.setItem("date", result);
+          history.push(ROUTES.TIMEOFAUDI);
+        }
+      })
+      .catch((err) => toast.error("Error sending request. Please try again."));
   };
 
   const FindTurfTime = () => {
-    axios.get(`/bturfs/${result}`).then((res) => {
-      if (res.data.length === 0) {
-        toast.error(
-          "Sorry no slots available for this date. Please select another date"
-        );
-      }
-    });
+    if (!result) {
+      return toast.error("Please select a date");
+    }
+    axios
+      .get(`/bturfs/${result}`)
+      .then((res) => {
+        if (res.data.length === 0) {
+          toast.error(
+            "Sorry no slots available for this date. Please select another date"
+          );
+        } else {
+          localStorage.setItem("date", result);
+          history.push(ROUTES.TIMEOFTURF);
+        }
+      })
+      .catch((err) => toast.error("Error sending request. Please try again."));
   };
 
   useEffect(() => {
@@ -88,14 +105,12 @@ const BookingPage = () => {
                       Book your event at our fully Air-Conditioned, 250 seating
                       + podium available auditorium now!
                     </Card.Text>
-                    {/* <Link to={ROUTES.AUDI}> */}
                     <ButtonCustom
                       block={false}
                       size="md"
                       parentfunction={FindAudiTime}
                       buttonContent="Book Audi"
                     />
-                    {/* </Link> */}
                   </Card.Body>
                 </Card>
               </Col>
@@ -109,14 +124,12 @@ const BookingPage = () => {
                       Need a break from study/work? Come enjoy a came of
                       cricket/football with your friends at KJSIEIT's turf!
                     </Card.Text>
-                    <Link to={ROUTES.TURF}>
-                      <ButtonCustom
-                        block={false}
-                        size="md"
-                        parentfunction={FindTurfTime}
-                        buttonContent="Book Turf"
-                      />
-                    </Link>
+                    <ButtonCustom
+                      block={false}
+                      size="md"
+                      parentfunction={FindTurfTime}
+                      buttonContent="Book Turf"
+                    />
                   </Card.Body>
                 </Card>
               </Col>
