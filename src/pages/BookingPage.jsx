@@ -1,11 +1,16 @@
 //@ts-check
-import React, { useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Col, Container, Row, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import ButtonCustom from "../components/ButtonCustom";
 import styled from "styled-components";
 import * as ROUTES from "../constants/routes";
 import AuthContext from "../context/auth/authContext";
+import "react-dates/initialize";
+import "react-dates/lib/css/_datepicker.css";
+import { SingleDatePicker } from "react-dates";
+import axios from "axios";
+import moment from "moment";
 
 const Styled = styled.div`
   .auth-container {
@@ -18,18 +23,40 @@ const Styled = styled.div`
 `;
 
 const BookingPage = () => {
+  const [date, setDate] = useState(null);
+  const [focused, setFocused] = useState(null);
+  const [result, setResult] = useState(null);
   const authContext = useContext(AuthContext);
 
   useEffect(() => {
     document.title = "Book Now - BookIt";
     authContext.loadUser();
+    axios.get(`/baudis/${result}`).then((res) => console.log(res.data));
     // eslint-disable-next-line
-  }, []);
+  }, [date]);
+
   return (
     <>
       <Styled>
         <div className="background-photo">
           <Container className="p-5">
+            <Row className="m-3">
+              <Col className="text-center">
+                <SingleDatePicker
+                  date={date}
+                  onDateChange={(date) => {
+                    setDate(date);
+                    const formatted = moment(date).format("YYYY-DD-MM");
+                    setResult(formatted);
+                  }}
+                  focused={focused}
+                  onFocusChange={({ focused }) => setFocused(focused)}
+                  displayFormat="DD/MM/YYYY"
+                  id="date"
+                  numberOfMonths={1}
+                />
+              </Col>
+            </Row>
             <Row className="m-3">
               <Col>
                 <Card className="text-center my-3 border-0 shadow-lg">
