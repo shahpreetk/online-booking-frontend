@@ -10,7 +10,7 @@ import AuthContext from "../context/auth/authContext";
 import { addonsAudi } from "../utils/addonsAudi";
 import formatPrice from "../utils/formatPrice";
 import AddToCart from "../components/AddToCart";
-// import RemoveFromCart from "../components/RemoveFromCart";
+import RemoveFromCart from "../components/RemoveFromCart";
 
 const AddonsAudi = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -62,13 +62,7 @@ const AddonsAudi = () => {
                           <Card.Text>{addon.description}</Card.Text>
                           <Card.Text>{price}</Card.Text>
                           <AddToCart addon={addon} />
-                          {/* <RemoveFromCart addon={addon} /> */}
-                          {/* <Button variant="success" className="mx-2">
-                            Add
-                          </Button>
-                          <Button variant="danger" className="mx-2">
-                            Remove
-                          </Button> */}
+                          <RemoveFromCart addon={addon} />
                         </Card.Body>
                       </Card>
                     </label>
