@@ -74,3 +74,15 @@ code {
   border: none;
   box-shadow: none;
 }
+
+.card-input {
+  box-shadow: 0 0 5px 5px #e3e3e3;
+}
+
+.card-input:hover {
+  cursor: pointer;
+}
+
+.card-input-element:checked + .card-input {
+  box-shadow: 0 0 1px 1px #2ecc71 !important;
+}

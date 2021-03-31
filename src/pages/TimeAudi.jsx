@@ -1,4 +1,12 @@
 import React, { useState, useEffect } from "react";
+import {
+  Col,
+  Container,
+  Row,
+  Card,
+  InputGroup,
+  FormControl,
+} from "react-bootstrap";
 import axios from "axios";
 
 const TimeAudi = () => {
@@ -12,14 +20,34 @@ const TimeAudi = () => {
   }, [date]);
 
   return (
-    <div>
-      Available time of audi:{" "}
+    <Container className="p-5">
+      <h3 className="text-center mb-4">Please select a time slot: </h3>
       {timingsAvailable.map((timing, i) => (
-        <p key={i}>
-          Slot {i + 1}: {timing}
-        </p>
+        <Row className="m-3 text-center" key={i}>
+          <Col className="text-center" md="12">
+            <label style={{ width: "40%" }} className="mx-5">
+              <input
+                type="radio"
+                name="timing"
+                className="card-input-element"
+                style={{ display: "none" }}
+              />
+              <Card
+                className="panel panel-default card-input rounded"
+                style={{ margin: "10px", padding: "0px" }}
+              >
+                <Card.Header className="panel-heading">
+                  Slot {i + 1}
+                </Card.Header>
+                <Card.Body className="panel-body">
+                  <Card.Text>{timing}</Card.Text>
+                </Card.Body>
+              </Card>
+            </label>
+          </Col>
+        </Row>
       ))}
-    </div>
+    </Container>
   );
 };
 
