@@ -46,10 +46,10 @@ const App = () => {
           <Suspense
             fallback={
               <section>
-                <div className="flex container mx-auto flex justify-content-center ">
+                <div className="flex container mx-auto flex justify-content-center">
                   <div
                     className="mx-auto flex max-w-screen-lg flex-col text-center"
-                    style={{ textAlign: "center" }}
+                    style={{ textAlign: "center", height: "100vh" }}
                   >
                     <img
                       className="text-center"
