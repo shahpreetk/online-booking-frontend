@@ -14,6 +14,7 @@ import AuthState from "./context/auth/AuthState";
 // import AlertState from "./context/alert/AlertState";
 import setAuthToken from "./utils/setAuthToken";
 import PrivateRoute from "./components/PrivateRoute";
+import axios from "axios";
 // Pages
 const HomePage = lazy(() => import("./pages/HomePage"));
 const LoginPage = lazy(() => import("./pages/LoginPage"));
@@ -22,6 +23,8 @@ const BookingPage = lazy(() => import("./pages/BookingPage"));
 const TimeAudi = lazy(() => import("./pages/TimeAudi"));
 const TimeTurf = lazy(() => import("./pages/TimeTurf"));
 const NotFound = lazy(() => import("./pages/NotFound"));
+
+axios.defaults.baseURL = "https://onlinebooking-backend.herokuapp.com";
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
