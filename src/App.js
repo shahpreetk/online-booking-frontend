@@ -51,7 +51,7 @@ const App = () => {
                     <img
                       width="128px"
                       height="128px"
-                      src="/images/loader.gif"
+                      src="/assets/loader.gif"
                       alt="loader"
                     />
                   </div>
