@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import * as ROUTES from "../constants/routes";
 import { Col, Container, Row, Card } from "react-bootstrap";
@@ -7,6 +7,7 @@ import axios from "axios";
 import ButtonCustom from "../components/ButtonCustom";
 import { FaArrowLeft } from "react-icons/fa";
 import Skeleton from "react-loading-skeleton";
+import AuthContext from "../context/auth/authContext";
 
 const Styled = styled.div`
   .background-photo {
@@ -23,13 +24,15 @@ const TimeAudi = () => {
   const [chosenTime, setChosenTime] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const date = localStorage.getItem("date");
+  const authContext = useContext(AuthContext);
 
   useEffect(() => {
     axios.get(`/baudis/${date}`).then((res) => {
       setIsLoading(false);
       setTimingsAvailable(res.data);
+      authContext.loadUser();
     });
-  }, [date]);
+  }, [authContext, date]);
 
   return (
     <Styled>

@@ -6,12 +6,9 @@ import { Toaster } from "react-hot-toast";
 // Components
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-// import Alerts from "./components/Alerts";
 
 import * as ROUTES from "./constants/routes";
-// import BAudiState from "./context/bAudi/BAudiState";
 import AuthState from "./context/auth/AuthState";
-// import AlertState from "./context/alert/AlertState";
 import setAuthToken from "./utils/setAuthToken";
 import PrivateRoute from "./components/PrivateRoute";
 import axios from "axios";
@@ -35,12 +32,25 @@ if (localStorage.token) {
 const App = () => {
   return (
     <AuthState>
-      {/* <BAudiState> */}
-      {/* <AlertState> */}
       <Router>
-        <Suspense fallback={<p>Loading...</p>}>
+        <Suspense
+          fallback={
+            <section>
+              <div className="flex h-screen">
+                <div className="m-auto">
+                  <img
+                    className=""
+                    width="128px"
+                    height="128px"
+                    src="/images/loader.gif"
+                    alt="loader"
+                  />
+                </div>
+              </div>
+            </section>
+          }
+        >
           <Header />
-          {/* <Alerts /> */}
           <Toaster position="bottom-center" />
           <Switch>
             <Route path={ROUTES.LOGIN} component={LoginPage} />
@@ -48,14 +58,14 @@ const App = () => {
             <Route path={ROUTES.HOME} component={HomePage} exact />
             <PrivateRoute path={ROUTES.BOOKING} component={BookingPage} exact />
             <PrivateRoute path={ROUTES.TIMEOFAUDI} component={TimeAudi} exact />
+            <PrivateRoute path={ROUTES.ADDONSAUDI} component={TimeAudi} exact />
             <PrivateRoute path={ROUTES.TIMEOFTURF} component={TimeTurf} exact />
+            <PrivateRoute path={ROUTES.ADDONSTURF} component={TimeTurf} exact />
             <Route component={NotFound} />
           </Switch>
           <Footer />
         </Suspense>
       </Router>
-      {/* </AlertState> */}
-      {/* </BAudiState> */}
     </AuthState>
   );
 };
