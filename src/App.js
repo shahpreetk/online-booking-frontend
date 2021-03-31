@@ -24,7 +24,9 @@ const TimeAudi = lazy(() => import("./pages/TimeAudi"));
 const TimeTurf = lazy(() => import("./pages/TimeTurf"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
-axios.defaults.baseURL = "https://onlinebooking-backend.herokuapp.com";
+// axios.defaults.baseURL = "https://onlinebooking-backend.herokuapp.com";
+
+axios.defaults.baseURL = "http://localhost:3010";
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);

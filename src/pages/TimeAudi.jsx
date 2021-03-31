@@ -10,7 +10,6 @@ import Skeleton from "react-loading-skeleton";
 
 const Styled = styled.div`
   .background-photo {
-    background-image: url("https://images.unsplash.com/photo-1502570149819-b2260483d302?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1950&q=80");
     background: black;
     overflow: hidden;
     background: -webkit-linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
@@ -31,7 +30,7 @@ const TimeAudi = () => {
       setTimingsAvailable(res.data);
     });
   }, [date]);
-  console.log(chosenTime);
+
   return (
     <Styled>
       <div className="background-photo">
@@ -55,7 +54,7 @@ const TimeAudi = () => {
             </Col>
           </Row>
           {isLoading ? (
-            <Skeleton count={5} />
+            <Skeleton count={5} height={300} />
           ) : (
             <>
               {timingsAvailable.map((timing, i) => (
