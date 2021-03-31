@@ -42,8 +42,8 @@ const App = () => {
             <Route path={ROUTES.SIGN_UP} component={SignUpPage} />
             <Route path={ROUTES.HOME} component={HomePage} exact />
             <PrivateRoute path={ROUTES.BOOKING} component={BookingPage} exact />
-            <PrivateRoute path={ROUTES.TIMEOFAUDI} component={TimeAudi} />
-            <PrivateRoute path={ROUTES.TIMEOFTURF} component={TimeTurf} />
+            <PrivateRoute path={ROUTES.TIMEOFAUDI} component={TimeAudi} exact />
+            <PrivateRoute path={ROUTES.TIMEOFTURF} component={TimeTurf} exact />
             <Route component={NotFound} />
           </Switch>
           <Footer />
