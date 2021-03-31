@@ -1,3 +1,4 @@
+// @ts-check
 import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import * as ROUTES from "../constants/routes";
@@ -32,7 +33,8 @@ const TimeAudi = () => {
       setTimingsAvailable(res.data);
       authContext.loadUser();
     });
-  }, [authContext, date]);
+    // eslint-disable-next-line
+  }, [date]);
 
   return (
     <Styled>
@@ -57,7 +59,7 @@ const TimeAudi = () => {
             </Col>
           </Row>
           {isLoading ? (
-            <Skeleton count={5} height={300} />
+            <Skeleton count={5} height={150} className="my-3" />
           ) : (
             <>
               {timingsAvailable.map((timing, i) => (

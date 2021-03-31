@@ -1,0 +1,51 @@
+// @ts-check
+export const addonsAudi = [
+  {
+    id: 1,
+    title: "Parking",
+    description: "this is a short description",
+    price: 100000,
+    inCart: false,
+    count: 1,
+  },
+  {
+    id: 2,
+    title: "Catering",
+    description: "this is a short description",
+    price: 100000,
+    inCart: false,
+    count: 1,
+  },
+  {
+    id: 3,
+    title: "Green Room",
+    description: "this is a short description",
+    price: 50000,
+    inCart: false,
+    count: 1,
+  },
+  {
+    id: 4,
+    title: "Podium Access",
+    description: "this is a short description",
+    price: 50000,
+    inCart: false,
+    count: 1,
+  },
+  {
+    id: 5,
+    title: "Music System",
+    description: "this is a short description",
+    price: 50000,
+    inCart: false,
+    count: 1,
+  },
+  {
+    id: 6,
+    title: "Less than 100 attendees",
+    description: "this is a short description",
+    price: 50000,
+    inCart: false,
+    count: 1,
+  },
+];
