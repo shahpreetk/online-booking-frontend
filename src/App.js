@@ -27,8 +27,8 @@ const stripePromise = loadStripe(
   "pk_test_51IYTLkSGnbQ252OAWnErHwp2IeWlrGhOlFDh2MqsgZ9nSMgBQh0B5e2a0VvqxlsnmmhunMjp7mdnnPU40lqLH3qZ00mfGM5EAi"
 );
 
-axios.defaults.baseURL = "https://onlinebooking-backend.herokuapp.com";
-// axios.defaults.baseURL = "http://localhost:3010";
+// axios.defaults.baseURL = "https://onlinebooking-backend.herokuapp.com";
+axios.defaults.baseURL = "http://localhost:3010";
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -46,15 +46,18 @@ const App = () => {
           <Suspense
             fallback={
               <section>
-                <div className="flex container mx-auto flex justify-content-center">
+                <div
+                  className="container m-auto flex justify-content-center"
+                  style={{ height: "100vh" }}
+                >
                   <div
-                    className="mx-auto flex max-w-screen-lg flex-col text-center"
-                    style={{ textAlign: "center", height: "100vh" }}
+                    className="m-auto flex max-w-screen-lg flex-col text-center"
+                    style={{ textAlign: "center" }}
                   >
                     <img
-                      className="text-center"
                       width="128px"
                       height="128px"
+                      style={{ marginTop: "20%" }}
                       src="/assets/loader.gif"
                       alt="loader"
                     />
