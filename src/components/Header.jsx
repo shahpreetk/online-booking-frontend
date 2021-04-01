@@ -1,11 +1,12 @@
 //@ts-check
 import React, { useContext } from "react";
 import { Container, Nav, Navbar } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import styled from "styled-components";
 import ButtonCustom from "./ButtonCustom";
 import * as ROUTES from "../constants/routes";
 import AuthContext from "../context/auth/authContext";
+import { useShoppingCart } from "use-shopping-cart";
 
 const Styles = styled.div`
   .navbar {
@@ -49,10 +50,12 @@ const Styles = styled.div`
 
 const Header = () => {
   const authContext = useContext(AuthContext);
+  const history = useHistory();
   const { isAuthenticated, logout } = authContext;
+  const { clearCart } = useShoppingCart();
   const onLogout = () => {
     logout();
-    // history.push("/");
+    clearCart();
   };
 
   const authLinks = (
@@ -60,9 +63,14 @@ const Header = () => {
       <Nav.Item className="pl-2 pr-2 py-2" onClick={onLogout}>
         <a href="/">Logout</a>
       </Nav.Item>
-      <Link to={ROUTES.BOOKING}>
-        <ButtonCustom buttonContent="Book Now" block={false} size="sm" />
-      </Link>
+      <ButtonCustom
+        parentfunction={() => {
+          history.push(ROUTES.BOOKING);
+        }}
+        buttonContent="Book Now"
+        block={false}
+        size="sm"
+      />
     </Nav>
   );
 

@@ -35,7 +35,6 @@ export default function authReducer(state, action) {
       localStorage.removeItem("token");
       localStorage.removeItem("date");
       localStorage.removeItem("time");
-      localStorage.removeItem("cart-values");
       return {
         ...state,
         token: null,

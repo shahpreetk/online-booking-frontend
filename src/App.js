@@ -21,6 +21,7 @@ const BookingPage = lazy(() => import("./pages/BookingPage"));
 const TimeAudi = lazy(() => import("./pages/TimeAudi"));
 const AddonsAudi = lazy(() => import("./pages/AddonsAudi"));
 const TimeTurf = lazy(() => import("./pages/TimeTurf"));
+const Checkout = lazy(() => import("./pages/Checkout"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 const stripePromise = loadStripe(
@@ -97,6 +98,7 @@ const App = () => {
                 component={TimeTurf}
                 exact
               />
+              <PrivateRoute path={ROUTES.CHECKOUT} component={Checkout} exact />
               <Route component={NotFound} />
             </Switch>
             <Footer />

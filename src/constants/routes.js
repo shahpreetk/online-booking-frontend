@@ -6,5 +6,6 @@ export const TIMEOFAUDI = "/booking/timeA";
 export const ADDONSAUDI = "/booking/addonsA";
 export const TIMEOFTURF = "/booking/timeT";
 export const ADDONSTURF = "/booking/addonsT";
+export const CHECKOUT = "/booking/checkout";
 export const NOT_FOUND = "/not-found";
 export const HOME = "/";
