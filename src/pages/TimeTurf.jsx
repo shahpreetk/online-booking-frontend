@@ -49,13 +49,25 @@ const TimeTurf = () => {
                 </h5>
               </Link>
             </Col>
-            <Col md={8}>
+            <Col md={4}>
               <h3
                 className="mb-4"
                 style={{ color: "#fff", paddingLeft: "25px" }}
               >
                 Please select a time slot :{" "}
               </h3>
+            </Col>
+            <Col md={4}>
+              <Link to={ROUTES.ADDONSAUDI} className="text-right">
+                <ButtonCustom
+                  block={false}
+                  size="md"
+                  parentfunction={() =>
+                    localStorage.setItem("time", chosenTime)
+                  }
+                  buttonContent="Proceed"
+                />
+              </Link>
             </Col>
           </Row>
           {isLoading ? (

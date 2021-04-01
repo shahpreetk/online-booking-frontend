@@ -1,6 +1,6 @@
 // @ts-check
 import React, { useState, useEffect, useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import * as ROUTES from "../constants/routes";
 import { Col, Container, Row, Card } from "react-bootstrap";
 import styled from "styled-components";
@@ -9,6 +9,7 @@ import ButtonCustom from "../components/ButtonCustom";
 import { FaArrowLeft } from "react-icons/fa";
 import Skeleton from "react-loading-skeleton";
 import AuthContext from "../context/auth/authContext";
+import toast from "react-hot-toast";
 
 const Styled = styled.div`
   .background-photo {
@@ -26,7 +27,16 @@ const TimeAudi = () => {
   const [isLoading, setIsLoading] = useState(true);
   const date = localStorage.getItem("date");
   const authContext = useContext(AuthContext);
+  const history = useHistory();
 
+  const goingToAddons = () => {
+    if (!chosenTime) {
+      return toast.error("Please select a time slot");
+    } else {
+      localStorage.setItem("time", chosenTime);
+      history.push(ROUTES.ADDONSAUDI);
+    }
+  };
   useEffect(() => {
     axios.get(`/baudis/${date}`).then((res) => {
       setIsLoading(false);
@@ -49,13 +59,23 @@ const TimeAudi = () => {
                 </h5>
               </Link>
             </Col>
-            <Col md={8}>
+            <Col md={4}>
               <h3
                 className="mb-4"
                 style={{ color: "#fff", paddingLeft: "25px" }}
               >
                 Please select a time slot :{" "}
               </h3>
+            </Col>
+            <Col md={4}>
+              <div className="text-right">
+                <ButtonCustom
+                  block={false}
+                  size="md"
+                  parentfunction={goingToAddons}
+                  buttonContent="Proceed"
+                />
+              </div>
             </Col>
           </Row>
           {isLoading ? (
@@ -93,14 +113,12 @@ const TimeAudi = () => {
             </>
           )}
           <div className="text-center">
-            <Link to={ROUTES.ADDONSAUDI}>
-              <ButtonCustom
-                block={false}
-                size="md"
-                parentfunction={() => localStorage.setItem("time", chosenTime)}
-                buttonContent="Proceed"
-              />
-            </Link>
+            <ButtonCustom
+              block={false}
+              size="md"
+              parentfunction={goingToAddons}
+              buttonContent="Proceed"
+            />
           </div>
         </Container>
       </div>

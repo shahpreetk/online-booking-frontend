@@ -23,7 +23,7 @@ const RemoveFromCart = ({ addon }) => {
       disabled={!addon.inCart}
       className="addcart flex ml-auto text-white border-0 py-2 px-2 rounded m-1"
       onClick={handleRemoveFromCart}
-      variant="info"
+      variant="danger"
     >
       <span>Remove From Cart</span>
     </Button>
