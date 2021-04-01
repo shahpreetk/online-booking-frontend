@@ -65,7 +65,7 @@ const BookingPage = () => {
   };
 
   useEffect(() => {
-    document.title = "Book Now - BookIt";
+    document.title = "Book Now | BookIt";
     authContext.loadUser();
     // eslint-disable-next-line
   }, []);

@@ -40,7 +40,7 @@ const SignUpPage = () => {
     register({ name, email, password, age });
   };
   useEffect(() => {
-    document.title = "SignUp - BookIt";
+    document.title = "SignUp | BookIt";
 
     if (isAuthenticated) {
       history.push("/booking");

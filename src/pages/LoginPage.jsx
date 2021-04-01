@@ -41,7 +41,7 @@ const LoginPage = () => {
   };
 
   useEffect(() => {
-    document.title = "Login - BookIt";
+    document.title = "Login | BookIt";
 
     if (isAuthenticated) {
       history.push("/booking");
