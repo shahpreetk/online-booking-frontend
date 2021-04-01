@@ -5,7 +5,7 @@ import { Button } from "react-bootstrap";
 import toast from "react-hot-toast";
 
 export default function AddToCart({ addon }) {
-  const { addItem } = useShoppingCart();
+  let { addItem, clearCart } = useShoppingCart();
 
   const handleAddToCart = () => {
     addItem(addon);
@@ -16,6 +16,7 @@ export default function AddToCart({ addon }) {
   useEffect(() => {
     localStorage.setItem("cart-values", "");
     addon.inCart = false;
+    clearCart();
     // eslint-disable-next-line
   }, []);
 
