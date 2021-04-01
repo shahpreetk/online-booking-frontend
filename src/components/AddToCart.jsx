@@ -14,7 +14,6 @@ export default function AddToCart({ addon }) {
   };
 
   useEffect(() => {
-    localStorage.setItem("cart-values", "");
     addon.inCart = false;
     clearCart();
     // eslint-disable-next-line

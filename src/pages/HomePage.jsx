@@ -19,6 +19,7 @@ const HomePage = () => {
         <Carousel className="shadow-lg p-3 mb-2 mt-3 bg-white">
           <Carousel.Item>
             <img
+              loading="lazy"
               className="d-block w-100 rounded"
               style={{ maxHeight: "500px" }}
               src="/assets/carousel1.jpg"
@@ -27,6 +28,7 @@ const HomePage = () => {
           </Carousel.Item>
           <Carousel.Item>
             <img
+              loading="lazy"
               className="d-block w-100 rounded"
               style={{ maxHeight: "500px" }}
               src="/assets/carousel2.jpg"
@@ -35,6 +37,7 @@ const HomePage = () => {
           </Carousel.Item>
           <Carousel.Item>
             <img
+              loading="lazy"
               className="d-block w-100 rounded"
               style={{ maxHeight: "500px" }}
               src="/assets/carousel3.jpg"
@@ -43,6 +46,7 @@ const HomePage = () => {
           </Carousel.Item>
           <Carousel.Item>
             <img
+              loading="lazy"
               className="d-block w-100 rounded"
               style={{ maxHeight: "500px" }}
               src="/assets/carousel4.jpg"
@@ -81,6 +85,8 @@ const HomePage = () => {
               <Card.Img
                 variant="top"
                 alt="college"
+                height="271px"
+                loading="lazy"
                 src="https://kjsieit.somaiya.edu.in/assets/kjsieit/images/infra/blg.jpg"
               />
             </Card>
