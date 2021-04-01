@@ -9,8 +9,8 @@ import AuthContext from "../context/auth/authContext";
 import styled from "styled-components";
 import RemoveFromCart from "../components/RemoveFromCart";
 import { AiOutlineClose } from "react-icons/ai";
-import ReactTooltip from "react-tooltip";
 import * as ROUTES from "../constants/routes";
+import useCheckout from "../utils/useCheckout";
 
 const Styled = styled.div`
   .background-photo {
@@ -33,6 +33,7 @@ const Checkout = () => {
   const authContext = useContext(AuthContext);
   const cartItems = Object.keys(cartDetails).map((key) => cartDetails[key]);
   const history = useHistory();
+  const handleCheckout = useCheckout();
 
   const clearFullCart = () => {
     clearCart();
@@ -61,14 +62,9 @@ const Checkout = () => {
               </Col>
               <Col md={3}>
                 <div className="text-right">
-                  <div
-                    data-tip="Empty Cart"
-                    data-for="toolTip1"
-                    data-place="right"
-                  >
-                    <AiOutlineClose size={20} onClick={clearFullCart} />
-                  </div>
-                  <ReactTooltip id="toolTip1" />
+                  <p aria-label="Clear Cart" title="Clear Cart">
+                    Clear Cart <AiOutlineClose onClick={clearFullCart} />
+                  </p>
                 </div>
               </Col>
             </Row>
@@ -108,7 +104,7 @@ const Checkout = () => {
                 <ButtonCustom
                   block={false}
                   size="md"
-                  parentfunction={() => console.log("Checkout clicked")}
+                  parentfunction={handleCheckout}
                   buttonContent="Checkout Now"
                 />
               </Col>

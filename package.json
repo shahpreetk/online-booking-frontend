@@ -18,7 +18,6 @@
     "react-query": "^3.13.2",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
-    "react-tooltip": "^4.2.17",
     "styled-components": "^5.2.1",
     "use-shopping-cart": "^2.4.3"
   },
