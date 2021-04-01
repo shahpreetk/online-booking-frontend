@@ -37,6 +37,7 @@ const Checkout = () => {
   const clearFullCart = () => {
     clearCart();
     localStorage.setItem("date", "");
+    localStorage.setItem("book", "");
     localStorage.setItem("time", "");
     history.push(ROUTES.BOOKING);
   };

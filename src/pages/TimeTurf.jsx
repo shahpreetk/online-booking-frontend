@@ -10,6 +10,7 @@ import { FaArrowLeft } from "react-icons/fa";
 import Skeleton from "react-loading-skeleton";
 import AuthContext from "../context/auth/authContext";
 import toast from "react-hot-toast";
+import { useShoppingCart } from "use-shopping-cart";
 
 const Styled = styled.div`
   .background-photo {
@@ -28,12 +29,24 @@ const TimeTurf = () => {
   const [isLoading, setIsLoading] = useState(true);
   const date = localStorage.getItem("date");
   const authContext = useContext(AuthContext);
+  const { addItem } = useShoppingCart();
 
   const goingToAddons = () => {
     if (!chosenTime) {
       return toast.error("Please select a time slot");
     } else {
       localStorage.setItem("time", chosenTime);
+      localStorage.setItem("book", "turf");
+      const book = {
+        id: 1,
+        title: "Turf",
+        name: "Turf",
+        description: "Turf per hour booking",
+        price: 500000,
+        currency: "INR",
+        sku: "1",
+      };
+      addItem(book);
       history.push(ROUTES.ADDONSAUDI);
     }
   };

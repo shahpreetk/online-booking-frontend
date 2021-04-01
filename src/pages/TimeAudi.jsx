@@ -10,6 +10,7 @@ import { FaArrowLeft } from "react-icons/fa";
 import Skeleton from "react-loading-skeleton";
 import AuthContext from "../context/auth/authContext";
 import toast from "react-hot-toast";
+import { useShoppingCart } from "use-shopping-cart";
 
 const Styled = styled.div`
   .background-photo {
@@ -28,12 +29,25 @@ const TimeAudi = () => {
   const date = localStorage.getItem("date");
   const authContext = useContext(AuthContext);
   const history = useHistory();
+  const { addItem } = useShoppingCart();
 
   const goingToAddons = () => {
     if (!chosenTime) {
       return toast.error("Please select a time slot");
     } else {
       localStorage.setItem("time", chosenTime);
+      localStorage.setItem("book", "audi");
+      const book = {
+        id: 1,
+        title: "Auditorium",
+        name: "Auditorium",
+        description: "Auditorium per hour booking",
+        price: 1000000,
+        inCart: true,
+        currency: "INR",
+        sku: "1",
+      };
+      addItem(book);
       history.push(ROUTES.ADDONSAUDI);
     }
   };
