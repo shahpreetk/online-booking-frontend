@@ -37,6 +37,7 @@ const TimeAudi = () => {
       history.push(ROUTES.ADDONSAUDI);
     }
   };
+
   useEffect(() => {
     axios.get(`/baudis/${date}`).then((res) => {
       setIsLoading(false);
@@ -82,10 +83,10 @@ const TimeAudi = () => {
             <Skeleton count={5} height={150} className="my-3" />
           ) : (
             <>
-              {timingsAvailable.map((timing, i) => (
-                <Row className="m-3 text-center" key={i}>
-                  <Col className="text-center" md="12">
-                    <label style={{ width: "40%" }} className="mx-5">
+              <Row className="text-center mb-3">
+                {timingsAvailable.map((timing, i) => (
+                  <Col className="text-center" md="6" key={i}>
+                    <label style={{ width: "70%" }} className="mx-3">
                       <input
                         type="radio"
                         name="timing"
@@ -108,11 +109,11 @@ const TimeAudi = () => {
                       </Card>
                     </label>
                   </Col>
-                </Row>
-              ))}
+                ))}
+              </Row>
             </>
           )}
-          <div className="text-center">
+          <div className="text-center mb-0">
             <ButtonCustom
               block={false}
               size="md"

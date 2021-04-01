@@ -1,6 +1,6 @@
 //@ts-check
 import React, { useState, useEffect, useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import * as ROUTES from "../constants/routes";
 import { Col, Container, Row, Card } from "react-bootstrap";
 import styled from "styled-components";
@@ -9,6 +9,7 @@ import ButtonCustom from "../components/ButtonCustom";
 import { FaArrowLeft } from "react-icons/fa";
 import Skeleton from "react-loading-skeleton";
 import AuthContext from "../context/auth/authContext";
+import toast from "react-hot-toast";
 
 const Styled = styled.div`
   .background-photo {
@@ -21,11 +22,21 @@ const Styled = styled.div`
 `;
 
 const TimeTurf = () => {
+  const history = useHistory();
   const [timingsAvailable, setTimingsAvailable] = useState([]);
   const [chosenTime, setChosenTime] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const date = localStorage.getItem("date");
   const authContext = useContext(AuthContext);
+
+  const goingToAddons = () => {
+    if (!chosenTime) {
+      return toast.error("Please select a time slot");
+    } else {
+      localStorage.setItem("time", chosenTime);
+      history.push(ROUTES.ADDONSAUDI);
+    }
+  };
 
   useEffect(() => {
     axios.get(`/bturfs/${date}`).then((res) => {
@@ -58,26 +69,24 @@ const TimeTurf = () => {
               </h3>
             </Col>
             <Col md={4}>
-              <Link to={ROUTES.ADDONSAUDI} className="text-right">
+              <div className="text-right">
                 <ButtonCustom
                   block={false}
                   size="md"
-                  parentfunction={() =>
-                    localStorage.setItem("time", chosenTime)
-                  }
+                  parentfunction={goingToAddons}
                   buttonContent="Proceed"
                 />
-              </Link>
+              </div>
             </Col>
           </Row>
           {isLoading ? (
             <Skeleton count={5} height={150} className="my-3" />
           ) : (
             <>
-              {timingsAvailable.map((timing, i) => (
-                <Row className="m-3 text-center" key={i}>
-                  <Col className="text-center" md="12">
-                    <label style={{ width: "40%" }} className="mx-5">
+              <Row className="mb-3 text-center">
+                {timingsAvailable.map((timing, i) => (
+                  <Col className="text-center" md="6" key={i}>
+                    <label style={{ width: "70%" }} className="mx-5">
                       <input
                         type="radio"
                         name="timing"
@@ -100,19 +109,17 @@ const TimeTurf = () => {
                       </Card>
                     </label>
                   </Col>
-                </Row>
-              ))}
+                ))}
+              </Row>
             </>
           )}
-          <div className="text-center">
-            <Link to={ROUTES.ADDONSAUDI}>
-              <ButtonCustom
-                block={false}
-                size="md"
-                parentfunction={() => localStorage.setItem("time", chosenTime)}
-                buttonContent="Proceed"
-              />
-            </Link>
+          <div className="text-center mb-0">
+            <ButtonCustom
+              block={false}
+              size="md"
+              parentfunction={goingToAddons}
+              buttonContent="Proceed"
+            />
           </div>
         </Container>
       </div>
