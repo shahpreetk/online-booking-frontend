@@ -2,7 +2,7 @@
 import React, { useEffect, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { Container, Col, Row, Card, Button } from "react-bootstrap";
-import ButtonCustom from "../components/ButtonCustom";
+// import ButtonCustom from "../components/ButtonCustom";
 import { useShoppingCart } from "use-shopping-cart";
 import formatPrice from "../utils/formatPrice";
 import AuthContext from "../context/auth/authContext";
@@ -30,6 +30,7 @@ const Checkout = () => {
     cartCount,
     formattedTotalPrice,
     cartDetails,
+    totalPrice,
     clearCart,
   } = useShoppingCart();
   const authContext = useContext(AuthContext);
@@ -45,6 +46,43 @@ const Checkout = () => {
     localStorage.setItem("book", "");
     localStorage.setItem("time", "");
     history.push(ROUTES.BOOKING);
+  };
+
+  const fetchCheckoutSession = async ({ quantity, amount }) => {
+    // return fetch("/create-checkout-session", {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify({
+    //     quantity,
+    //   }),
+    // }).then((res) => res.json());
+    const book = {
+      quantity,
+      amount,
+    };
+
+    return axios.post("/checkout-sessions", book).then((res) => res.data);
+  };
+
+  const handleClick = async (event) => {
+    // Call your backend to create the Checkout session.
+    // dispatch({ type: "setLoading", payload: { loading: true } });
+    const { sessionId } = await fetchCheckoutSession({
+      quantity: 1,
+      amount: totalPrice,
+    });
+    // When the customer clicks on the button, redirect them to Checkout.
+    const { error } = await stripe.redirectToCheckout({
+      sessionId,
+    });
+    // If `redirectToCheckout` fails due to a browser or network
+    // error, display the localized error message to your customer
+    // using `error.message`.
+    if (error) {
+      console.log("error", error);
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -133,7 +171,7 @@ const Checkout = () => {
             </Row>
             <Row className="m-3">
               <Col className="text-right mt-3 ml-5">
-                {/* <Button
+                <Button
                   style={{
                     backgroundColor: "#6772E5",
                     color: "#FFF",
@@ -143,11 +181,11 @@ const Checkout = () => {
                     fontSize: "1em",
                   }}
                   // @ts-ignore
-                  onClick={handleCheckout}
+                  onClick={handleClick}
                   // id="checkout-button-price_1IbVRqSGnbQ252OAatfNnl0H"
                 >
                   Checkout
-                </Button> */}
+                </Button>
                 {/* <ButtonCustom
                   block={false}
                   size="md"
