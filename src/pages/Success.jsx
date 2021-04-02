@@ -117,9 +117,7 @@ export default function Result() {
     );
   if (!data && !isLoading)
     return (
-      <div className="text-white font-bold text-center mx-auto">
-        No purchase found.
-      </div>
+      <div className="font-bold text-center mx-auto">No purchase found.</div>
     );
   if (isError)
     return (
@@ -135,13 +133,10 @@ export default function Result() {
   });
 
   return (
-    <section
-      className="text-light body-font"
-      style={{ backgroundColor: "#1b1b56" }}
-    >
+    <section className="text-dark body-font">
       <div className="container px-5 py-5 mx-auto">
         <div className="text-center mt-3">
-          <h1 className="text-sm-3xl text-2xl font-style-medium text-center title-font text-white mb-3 mt-5">
+          <h1 className="text-sm-3xl text-2xl font-style-medium text-center title-font mb-3 mt-5">
             Payment Accepted!
           </h1>
           <p className="text-base leading-relaxed xl:w-2/4 lg:w-3/4 text-xl mx-auto">
@@ -163,7 +158,7 @@ export default function Result() {
               <>
                 <Row>
                   <Col>
-                    <h6 className="text-light">
+                    <h6 className="text-dark">
                       {cartItem.title} : {price}
                     </h6>
                   </Col>
@@ -171,12 +166,12 @@ export default function Result() {
               </>
             );
           })}
-          <h5 className="text-md text-light mt-4">
+          <h5 className="text-md text-dark mt-4">
             Thank you for booking with us!
           </h5>
           <div className="mt-5">
             <ButtonCustom
-              buttonContent="Ok"
+              buttonContent="Make another Booking"
               block={false}
               parentfunction={handleGoingback}
               size="md"
