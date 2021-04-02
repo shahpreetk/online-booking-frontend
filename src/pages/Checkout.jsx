@@ -1,7 +1,7 @@
 // @ts-check
 import React, { useEffect, useContext } from "react";
 import { useHistory } from "react-router-dom";
-import { Container, Col, Row, Card } from "react-bootstrap";
+import { Container, Col, Row, Card, Button } from "react-bootstrap";
 import ButtonCustom from "../components/ButtonCustom";
 import { useShoppingCart } from "use-shopping-cart";
 import formatPrice from "../utils/formatPrice";
@@ -10,7 +10,9 @@ import styled from "styled-components";
 import RemoveFromCart from "../components/RemoveFromCart";
 import { AiOutlineClose } from "react-icons/ai";
 import * as ROUTES from "../constants/routes";
-import useCheckout from "../utils/useCheckout";
+// import useCheckout from "../utils/useCheckout";
+import axios from "axios";
+import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 
 const Styled = styled.div`
   .background-photo {
@@ -33,7 +35,9 @@ const Checkout = () => {
   const authContext = useContext(AuthContext);
   const cartItems = Object.keys(cartDetails).map((key) => cartDetails[key]);
   const history = useHistory();
-  const handleCheckout = useCheckout();
+  // const handleCheckout = useCheckout();
+  const stripe = useStripe();
+  const elements = useElements();
 
   const clearFullCart = () => {
     clearCart();
@@ -41,6 +45,34 @@ const Checkout = () => {
     localStorage.setItem("book", "");
     localStorage.setItem("time", "");
     history.push(ROUTES.BOOKING);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const { error, paymentMethod } = await stripe.createPaymentMethod({
+      type: "card",
+      card: elements.getElement(CardElement),
+    });
+
+    if (!error) {
+      console.log("Stripe 23 | token generated!", paymentMethod);
+      try {
+        const { id } = paymentMethod;
+        const response = await axios.post("/checkout-sessions", {
+          amount: 1500000,
+          id: id,
+        });
+
+        console.log("Stripe 35 | data", response.data.success);
+        if (response.data.success) {
+          console.log("CheckoutForm.js 25 | payment successful!");
+        }
+      } catch (error) {
+        console.log("CheckoutForm.js 28 | ", error);
+      }
+    } else {
+      console.log(error.message);
+    }
   };
 
   useEffect(() => {
@@ -101,12 +133,31 @@ const Checkout = () => {
             </Row>
             <Row className="m-3">
               <Col className="text-right mt-3 ml-5">
-                <ButtonCustom
+                {/* <Button
+                  style={{
+                    backgroundColor: "#6772E5",
+                    color: "#FFF",
+                    padding: "8px 12px",
+                    border: 0,
+                    borderRadius: "4px",
+                    fontSize: "1em",
+                  }}
+                  // @ts-ignore
+                  onClick={handleCheckout}
+                  // id="checkout-button-price_1IbVRqSGnbQ252OAatfNnl0H"
+                >
+                  Checkout
+                </Button> */}
+                {/* <ButtonCustom
                   block={false}
                   size="md"
                   parentfunction={handleCheckout}
                   buttonContent="Checkout Now"
-                />
+                /> */}
+                <form onSubmit={handleSubmit} style={{ maxWidth: 400 }}>
+                  <CardElement />
+                  <button>Pay</button>
+                </form>
               </Col>
             </Row>
           </Card>

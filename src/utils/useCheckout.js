@@ -2,7 +2,7 @@ import { useShoppingCart } from "use-shopping-cart";
 import axios from "axios";
 import toast from "react-hot-toast";
 
-export default function useCheckout() {
+export default async function useCheckout() {
   const { redirectToCheckout, cartDetails } = useShoppingCart();
 
   async function handleCheckout() {
@@ -15,6 +15,7 @@ export default function useCheckout() {
       });
 
     if (session) {
+      console.log(session.id);
       redirectToCheckout({ sessionId: session.id });
     }
   }
