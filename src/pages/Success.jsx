@@ -35,7 +35,6 @@ export default function Result() {
         return addons.push(...addons, item);
       } else return null;
     });
-    console.log(book, date, time, addons, totalPrice);
     if (book === "audi") {
       const bAudi = {
         date,
@@ -43,7 +42,7 @@ export default function Result() {
         addons,
         cost: totalPrice,
       };
-      console.log("bAudi", bAudi);
+
       return await axios
         .post("/baudis", bAudi)
         .then((res) => {

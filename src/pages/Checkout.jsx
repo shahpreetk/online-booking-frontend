@@ -1,5 +1,5 @@
 // @ts-check
-import React, { useEffect, useContext } from "react";
+import React, { useEffect, useContext, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { Container, Col, Row, Card, Button } from "react-bootstrap";
 import { useShoppingCart } from "use-shopping-cart";
@@ -10,6 +10,7 @@ import RemoveFromCart from "../components/RemoveFromCart";
 import { AiOutlineClose } from "react-icons/ai";
 import * as ROUTES from "../constants/routes";
 import axios from "axios";
+import toast from "react-hot-toast";
 import { useStripe } from "@stripe/react-stripe-js";
 
 const Styled = styled.div`
@@ -35,6 +36,8 @@ const Checkout = () => {
   const cartItems = Object.keys(cartDetails).map((key) => cartDetails[key]);
   const history = useHistory();
   const stripe = useStripe();
+  const [disabled, setDisabled] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   const clearFullCart = () => {
     clearCart();
@@ -51,10 +54,19 @@ const Checkout = () => {
       email,
     };
 
-    return axios.post("/checkout-sessions", book).then((res) => res.data);
+    return axios.post("/checkout-sessions", book).then((res) => {
+      return res.data;
+    });
   };
 
   const handleClick = async (event) => {
+    setIsLoading(true);
+    setDisabled(true);
+    if (cartCount === 0 && totalPrice === 0 && cartItems.length === 0) {
+      setDisabled(true);
+      setIsLoading(false);
+      toast.error("Cart is empty. Please select items");
+    }
     const { sessionId } = await fetchCheckoutSession({
       quantity: 1,
       amount: totalPrice,
@@ -63,7 +75,7 @@ const Checkout = () => {
     const { error } = await stripe.redirectToCheckout({
       sessionId,
     });
-
+    setIsLoading(false);
     if (error) {
       console.log("error", error);
     }
@@ -71,6 +83,8 @@ const Checkout = () => {
 
   useEffect(() => {
     authContext.loadUser();
+    setIsLoading(false);
+    setDisabled(false);
     // eslint-disable-next-line
   }, []);
 
@@ -137,10 +151,11 @@ const Checkout = () => {
                     borderRadius: "4px",
                     fontSize: "1em",
                   }}
+                  disabled={disabled}
                   // @ts-ignore
                   onClick={handleClick}
                 >
-                  Checkout
+                  {isLoading ? "Processing..." : "Checkout"}
                 </Button>
               </Col>
             </Row>

@@ -31,6 +31,10 @@ const TimeAudi = () => {
   const history = useHistory();
   const { addItem } = useShoppingCart();
 
+  const handleGoingback = () => {
+    localStorage.setItem("date", "");
+  };
+
   const goingToAddons = () => {
     if (!chosenTime) {
       return toast.error("Please select a time slot");
@@ -67,7 +71,11 @@ const TimeAudi = () => {
         <Container className="p-5">
           <Row>
             <Col md={4}>
-              <Link to={ROUTES.BOOKING} style={{ color: "#fff" }}>
+              <Link
+                to={ROUTES.BOOKING}
+                onClick={handleGoingback}
+                style={{ color: "#fff" }}
+              >
                 <h5 style={{ color: "#fff" }}>
                   <FaArrowLeft size={20} style={{ marginBottom: "5px" }} />
                   &nbsp; Back

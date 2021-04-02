@@ -11,11 +11,19 @@ import { addonsAudi } from "../utils/addonsAudi";
 import formatPrice from "../utils/formatPrice";
 import AddToCart from "../components/AddToCart";
 import RemoveFromCart from "../components/RemoveFromCart";
+import { useShoppingCart } from "use-shopping-cart";
 
 const AddonsAudi = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [addons, setAddons] = useState([]);
   const authContext = useContext(AuthContext);
+  const { clearCart } = useShoppingCart();
+
+  const handleGoingback = () => {
+    localStorage.setItem("time", "");
+    localStorage.setItem("book", "");
+    clearCart();
+  };
 
   useEffect(() => {
     authContext.loadUser();
@@ -28,17 +36,29 @@ const AddonsAudi = () => {
     <Container className="p-5">
       <Row>
         <Col md={3} className="p-0 m-0">
-          <Link to={ROUTES.TIMEOFAUDI}>
+          <Link to={ROUTES.TIMEOFAUDI} onClick={handleGoingback}>
             <h5>
               <FaArrowLeft size={20} style={{ marginBottom: "5px" }} />
               &nbsp; Back
             </h5>
           </Link>
         </Col>
-        <Col md={9}>
+        <Col md={6}>
           <h3 className="mb-4" style={{ paddingLeft: "30px" }}>
             Any Addons that may interest you?{" "}
           </h3>
+        </Col>
+        <Col md={3}>
+          <div className="text-right">
+            <Link to={ROUTES.CHECKOUT}>
+              <ButtonCustom
+                block={false}
+                size="md"
+                parentfunction={(e) => console.log(e.target.value)}
+                buttonContent="Proceed to Checkout"
+              />
+            </Link>
+          </div>
         </Col>
       </Row>
       {isLoading ? (

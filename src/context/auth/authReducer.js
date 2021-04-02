@@ -33,11 +33,7 @@ export default function authReducer(state, action) {
     case AUTH_ERROR:
     case LOGIN_FAIL:
     case LOGOUT:
-      localStorage.removeItem("token");
-      localStorage.removeItem("date");
-      localStorage.removeItem("book");
-      localStorage.removeItem("email");
-      localStorage.removeItem("time");
+      localStorage.clear();
       return {
         ...state,
         token: null,
