@@ -61,7 +61,7 @@ const Header = () => {
   const authLinks = (
     <Nav className="ml-auto">
       <Nav.Item className="pl-2 pr-2 py-2" onClick={onLogout}>
-        <a href="/">Logout</a>
+        <a href="/login">Logout</a>
       </Nav.Item>
       <ButtonCustom
         parentfunction={() => {

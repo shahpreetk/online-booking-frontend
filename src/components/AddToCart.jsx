@@ -21,9 +21,9 @@ export default function AddToCart({ addon }) {
   return (
     <Button
       disabled={addon.inCart}
-      className="flex ml-auto text-white border-0 py-2 px-2 rounded m-1"
+      className="flex ml-auto border-0 py-2 px-2 rounded m-1"
       onClick={handleAddToCart}
-      variant="info"
+      variant="warning"
     >
       {addon.inCart === true ? <span>In Cart</span> : <span>Add to Cart</span>}
     </Button>

@@ -83,7 +83,8 @@ const Checkout = () => {
             style={{ backgroundColor: "#f1f5f9" }}
           >
             <Row className="m-3">
-              <Col md={9}>
+              <Col md={3}></Col>
+              <Col md={6}>
                 <h3 className="text-center">Cart Summary</h3>
               </Col>
               <Col md={3}>
@@ -95,7 +96,7 @@ const Checkout = () => {
               </Col>
             </Row>
             <Row className="ml-3">
-              <Col className="ml-5">
+              <Col>
                 <p>{cartCount} Cart Items : </p>
               </Col>
             </Row>
@@ -117,12 +118,12 @@ const Checkout = () => {
                 );
               })}
               <Col className="text-left mt-3" md={6}>
-                <h6>Total Price :</h6>
+                <h5 className="font-weight-bold">Total Price :</h5>
               </Col>
               <Col className="text-right mt-3" md={6}>
-                <span className="text-muted text-right">
+                <h5 className="text-right font-weight-bold">
                   {formattedTotalPrice}
-                </span>
+                </h5>
               </Col>
             </Row>
             <Row className="m-3">

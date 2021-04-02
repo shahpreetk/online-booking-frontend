@@ -61,7 +61,7 @@ const Footer = () => {
             <a
               rel="noreferrer"
               target="_blank"
-              href="https://github.com/shahpreetk/beproject"
+              href="https://github.com/shahpreetk/online-booking-frontend"
             >
               {/* <a
               rel="noreferrer"
