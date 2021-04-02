@@ -109,7 +109,13 @@ const Checkout = () => {
               <Col md={3}>
                 <div className="text-right">
                   <p aria-label="Clear Cart" title="Clear Cart">
-                    Clear Cart <AiOutlineClose onClick={clearFullCart} />
+                    <Button
+                      onClick={clearFullCart}
+                      className="text-center"
+                      variant="light"
+                    >
+                      Clear Cart <AiOutlineClose />
+                    </Button>
                   </p>
                 </div>
               </Col>
