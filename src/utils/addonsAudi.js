@@ -39,7 +39,7 @@ export const addonsAudi = [
     id: 7,
     title: "Less than 100 attendees",
     description: "this is a short description",
-    price: 50000,
+    price: -50000,
     inCart: false,
   },
 ];
