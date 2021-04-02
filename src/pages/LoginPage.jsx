@@ -18,6 +18,7 @@ const LoginPage = () => {
     email: "",
     password: "",
   });
+  const [isLoading, setIsLoading] = useState(false);
   const { email, password } = user;
   const isInvalid = password === "" || email === "";
   const history = useHistory();
@@ -36,7 +37,9 @@ const LoginPage = () => {
     if (isInvalid) {
       toast.error("Please fill in all fields");
     } else {
+      setIsLoading(true);
       login({ email, password });
+      setIsLoading(false);
     }
   };
 
@@ -102,7 +105,7 @@ const LoginPage = () => {
                     type="submit"
                     style={{ backgroundColor: "#a72329", border: "none" }}
                   >
-                    Log In
+                    {isLoading ? "Processing ..." : "Log In"}
                   </Button>
                   <Form.Group>
                     <p className="text-sm mt-3">

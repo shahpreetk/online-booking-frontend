@@ -30,8 +30,8 @@ const stripePromise = loadStripe(
   "pk_test_51IYTLkSGnbQ252OAWnErHwp2IeWlrGhOlFDh2MqsgZ9nSMgBQh0B5e2a0VvqxlsnmmhunMjp7mdnnPU40lqLH3qZ00mfGM5EAi"
 );
 
-axios.defaults.baseURL = "https://onlinebooking-backend.herokuapp.com";
-// axios.defaults.baseURL = "http://localhost:3010";
+// axios.defaults.baseURL = "https://onlinebooking-backend.herokuapp.com";
+axios.defaults.baseURL = "http://localhost:3010";
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);

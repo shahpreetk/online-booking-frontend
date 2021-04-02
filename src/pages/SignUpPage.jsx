@@ -14,6 +14,7 @@ const Styled = styled.div`
 `;
 
 const SignUpPage = () => {
+  const [isLoading, setIsLoading] = useState(false);
   const authContext = useContext(AuthContext);
   const { register, error, clearErrors, isAuthenticated } = authContext;
 
@@ -37,7 +38,9 @@ const SignUpPage = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
+    setIsLoading(true);
     register({ name, email, password, age });
+    setIsLoading(false);
   };
   useEffect(() => {
     document.title = "SignUp | BookIt";
@@ -126,7 +129,7 @@ const SignUpPage = () => {
                     type="submit"
                     style={{ backgroundColor: "#a72329", border: "none" }}
                   >
-                    Sign Up
+                    {isLoading ? "Processing ..." : "Sign Up"}
                   </Button>
                   <Form.Group>
                     <p className="text-sm mt-3">
