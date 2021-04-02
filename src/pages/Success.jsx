@@ -32,7 +32,7 @@ export default function Result() {
     let addons = [];
     cartItems.map((item) => {
       if (item.id !== 1) {
-        return addons.push(...addons, item);
+        return addons.push(item);
       } else return null;
     });
     if (book === "audi") {
@@ -57,6 +57,7 @@ export default function Result() {
         addons,
         cost: totalPrice,
       };
+      console.log(bTurf);
       return await axios
         .post("/bturfs", bTurf)
         .then((res) => res.data)
