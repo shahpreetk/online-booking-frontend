@@ -2,7 +2,6 @@
 import React, { useEffect, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { Container, Col, Row, Card, Button } from "react-bootstrap";
-// import ButtonCustom from "../components/ButtonCustom";
 import { useShoppingCart } from "use-shopping-cart";
 import formatPrice from "../utils/formatPrice";
 import AuthContext from "../context/auth/authContext";
@@ -10,9 +9,8 @@ import styled from "styled-components";
 import RemoveFromCart from "../components/RemoveFromCart";
 import { AiOutlineClose } from "react-icons/ai";
 import * as ROUTES from "../constants/routes";
-// import useCheckout from "../utils/useCheckout";
 import axios from "axios";
-import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
+import { useStripe } from "@stripe/react-stripe-js";
 
 const Styled = styled.div`
   .background-photo {
@@ -36,9 +34,7 @@ const Checkout = () => {
   const authContext = useContext(AuthContext);
   const cartItems = Object.keys(cartDetails).map((key) => cartDetails[key]);
   const history = useHistory();
-  // const handleCheckout = useCheckout();
   const stripe = useStripe();
-  const elements = useElements();
 
   const clearFullCart = () => {
     clearCart();
@@ -48,68 +44,28 @@ const Checkout = () => {
     history.push(ROUTES.BOOKING);
   };
 
-  const fetchCheckoutSession = async ({ quantity, amount }) => {
-    // return fetch("/create-checkout-session", {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify({
-    //     quantity,
-    //   }),
-    // }).then((res) => res.json());
+  const fetchCheckoutSession = async ({ quantity, amount, email }) => {
     const book = {
       quantity,
       amount,
+      email,
     };
 
     return axios.post("/checkout-sessions", book).then((res) => res.data);
   };
 
   const handleClick = async (event) => {
-    // Call your backend to create the Checkout session.
-    // dispatch({ type: "setLoading", payload: { loading: true } });
     const { sessionId } = await fetchCheckoutSession({
       quantity: 1,
       amount: totalPrice,
+      email: localStorage.getItem("email"),
     });
-    // When the customer clicks on the button, redirect them to Checkout.
     const { error } = await stripe.redirectToCheckout({
       sessionId,
     });
-    // If `redirectToCheckout` fails due to a browser or network
-    // error, display the localized error message to your customer
-    // using `error.message`.
+
     if (error) {
       console.log("error", error);
-    }
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const { error, paymentMethod } = await stripe.createPaymentMethod({
-      type: "card",
-      card: elements.getElement(CardElement),
-    });
-
-    if (!error) {
-      console.log("Stripe 23 | token generated!", paymentMethod);
-      try {
-        const { id } = paymentMethod;
-        const response = await axios.post("/checkout-sessions", {
-          amount: 1500000,
-          id: id,
-        });
-
-        console.log("Stripe 35 | data", response.data.success);
-        if (response.data.success) {
-          console.log("CheckoutForm.js 25 | payment successful!");
-        }
-      } catch (error) {
-        console.log("CheckoutForm.js 28 | ", error);
-      }
-    } else {
-      console.log(error.message);
     }
   };
 
@@ -182,20 +138,9 @@ const Checkout = () => {
                   }}
                   // @ts-ignore
                   onClick={handleClick}
-                  // id="checkout-button-price_1IbVRqSGnbQ252OAatfNnl0H"
                 >
                   Checkout
                 </Button>
-                {/* <ButtonCustom
-                  block={false}
-                  size="md"
-                  parentfunction={handleCheckout}
-                  buttonContent="Checkout Now"
-                /> */}
-                <form onSubmit={handleSubmit} style={{ maxWidth: 400 }}>
-                  <CardElement />
-                  <button>Pay</button>
-                </form>
               </Col>
             </Row>
           </Card>

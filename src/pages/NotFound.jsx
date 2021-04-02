@@ -1,11 +1,15 @@
 //@ts-check
-import React, { useEffect } from "react";
+import React, { useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import * as ROUTES from "../constants/routes";
+import AuthContext from "../context/auth/authContext";
 
 const NotFound = () => {
+  const authContext = useContext(AuthContext);
   useEffect(() => {
     document.title = "404 - Not Found | BookIt";
+    authContext.loadUser();
+    // eslint-disable-next-line
   }, []);
   return (
     <div className="container mx-auto flex items-center bg-gray-200 my-5">

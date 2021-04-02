@@ -100,7 +100,7 @@ const App = () => {
                   component={TimeTurf}
                   exact
                 />
-                <PrivateRoute path={ROUTES.SUCCESS} component={Success} exact />
+                <PrivateRoute path={ROUTES.SUCCESS} component={Success} />
                 <PrivateRoute
                   path={ROUTES.CHECKOUT}
                   component={Checkout}

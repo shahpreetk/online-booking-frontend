@@ -22,6 +22,7 @@ export default function authReducer(state, action) {
     case REGISTER_SUCCESS:
     case LOGIN_SUCCESS:
       localStorage.setItem("token", action.payload.token);
+      localStorage.setItem("email", action.payload.user.email);
       return {
         ...state,
         ...action.payload,
@@ -34,6 +35,7 @@ export default function authReducer(state, action) {
     case LOGOUT:
       localStorage.removeItem("token");
       localStorage.removeItem("date");
+      localStorage.removeItem("book");
       localStorage.removeItem("time");
       return {
         ...state,
