@@ -58,7 +58,7 @@ export default function Result() {
         cost: totalPrice,
       };
       return await axios
-        .post("/baudis", bTurf)
+        .post("/bturfs", bTurf)
         .then((res) => res.data)
         .catch((err) => console.log(err));
     }

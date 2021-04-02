@@ -1,4 +1,4 @@
-//@ts-check
+// @ts-check
 import React, { useState, useEffect, useContext } from "react";
 import { Link, useHistory } from "react-router-dom";
 import * as ROUTES from "../constants/routes";
@@ -23,13 +23,17 @@ const Styled = styled.div`
 `;
 
 const TimeTurf = () => {
-  const history = useHistory();
   const [timingsAvailable, setTimingsAvailable] = useState([]);
   const [chosenTime, setChosenTime] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const date = localStorage.getItem("date");
   const authContext = useContext(AuthContext);
+  const history = useHistory();
   const { addItem } = useShoppingCart();
+
+  const handleGoingback = () => {
+    localStorage.setItem("date", "");
+  };
 
   const goingToAddons = () => {
     if (!chosenTime) {
@@ -43,11 +47,12 @@ const TimeTurf = () => {
         name: "Turf",
         description: "Turf per hour booking",
         price: 500000,
+        inCart: true,
         currency: "INR",
         sku: "1",
       };
       addItem(book);
-      history.push(ROUTES.ADDONSAUDI);
+      history.push(ROUTES.ADDONSTURF);
     }
   };
 
@@ -55,8 +60,8 @@ const TimeTurf = () => {
     axios.get(`/bturfs/${date}`).then((res) => {
       setIsLoading(false);
       setTimingsAvailable(res.data);
+      authContext.loadUser();
     });
-    authContext.loadUser();
     // eslint-disable-next-line
   }, [date]);
 
@@ -66,7 +71,11 @@ const TimeTurf = () => {
         <Container className="p-5">
           <Row>
             <Col md={4}>
-              <Link to={ROUTES.BOOKING} style={{ color: "#fff" }}>
+              <Link
+                to={ROUTES.BOOKING}
+                onClick={handleGoingback}
+                style={{ color: "#fff" }}
+              >
                 <h5 style={{ color: "#fff" }}>
                   <FaArrowLeft size={20} style={{ marginBottom: "5px" }} />
                   &nbsp; Back
@@ -96,10 +105,10 @@ const TimeTurf = () => {
             <Skeleton count={5} height={150} className="my-3" />
           ) : (
             <>
-              <Row className="mb-3 text-center">
+              <Row className="text-center mb-3">
                 {timingsAvailable.map((timing, i) => (
                   <Col className="text-center" md="6" key={i}>
-                    <label style={{ width: "70%" }} className="mx-5">
+                    <label style={{ width: "70%" }} className="mx-3">
                       <input
                         type="radio"
                         name="timing"

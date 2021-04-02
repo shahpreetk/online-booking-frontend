@@ -65,7 +65,12 @@ const Checkout = () => {
     if (cartCount === 0 && totalPrice === 0 && cartItems.length === 0) {
       setDisabled(true);
       setIsLoading(false);
-      toast.error("Cart is empty. Please select items");
+      return toast.error("Cart is empty. Please select items");
+    }
+    if (totalPrice < 500000) {
+      setDisabled(true);
+      setIsLoading(false);
+      return toast.error("Please select the Turf or Auditorium");
     }
     const { sessionId } = await fetchCheckoutSession({
       quantity: 1,

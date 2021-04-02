@@ -22,6 +22,7 @@ const BookingPage = lazy(() => import("./pages/BookingPage"));
 const TimeAudi = lazy(() => import("./pages/TimeAudi"));
 const AddonsAudi = lazy(() => import("./pages/AddonsAudi"));
 const TimeTurf = lazy(() => import("./pages/TimeTurf"));
+const AddonsTurf = lazy(() => import("./pages/AddonsTurf"));
 const Checkout = lazy(() => import("./pages/Checkout"));
 const Success = lazy(() => import("./pages/Success"));
 const UnSuccessful = lazy(() => import("./pages/UnSuccessful"));
@@ -98,7 +99,7 @@ const App = () => {
                 />
                 <PrivateRoute
                   path={ROUTES.ADDONSTURF}
-                  component={TimeTurf}
+                  component={AddonsTurf}
                   exact
                 />
                 <PrivateRoute path={ROUTES.SUCCESS} component={Success} />
