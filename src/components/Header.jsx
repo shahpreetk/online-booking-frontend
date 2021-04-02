@@ -53,6 +53,7 @@ const Header = () => {
   const history = useHistory();
   const { isAuthenticated, logout } = authContext;
   const { clearCart } = useShoppingCart();
+
   const onLogout = () => {
     logout();
     clearCart();
@@ -61,10 +62,14 @@ const Header = () => {
   const authLinks = (
     <Nav className="ml-auto">
       <Nav.Item className="pl-2 pr-2 py-2" onClick={onLogout}>
-        <a href="/login">Logout</a>
+        <a href={ROUTES.LOGIN}>Logout</a>
       </Nav.Item>
       <ButtonCustom
         parentfunction={() => {
+          clearCart();
+          localStorage.setItem("date", "");
+          localStorage.setItem("book", "");
+          localStorage.setItem("time", "");
           history.push(ROUTES.BOOKING);
         }}
         buttonContent="Book Now"
