@@ -3,11 +3,11 @@ import React, { useEffect, useContext, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { Container, Col, Row, Card, Button } from "react-bootstrap";
 import { useShoppingCart } from "use-shopping-cart";
-import formatPrice from "../utils/formatPrice";
+import formatPrice, { formatValue } from "../utils/formatPrice";
 import AuthContext from "../context/auth/authContext";
 import styled from "styled-components";
 import RemoveFromCart from "../components/RemoveFromCart";
-import { AiOutlineClose } from "react-icons/ai";
+import { FaTimes } from "react-icons/fa";
 import * as ROUTES from "../constants/routes";
 import axios from "axios";
 import toast from "react-hot-toast";
@@ -114,7 +114,7 @@ const Checkout = () => {
                       className="text-center"
                       variant="light"
                     >
-                      Clear Cart <AiOutlineClose />
+                      Clear Cart <FaTimes />
                     </Button>
                   </p>
                 </div>
@@ -132,15 +132,21 @@ const Checkout = () => {
             <Row className="mx-3 my-0">
               {cartItems.map((cartItem) => {
                 const price = formatPrice(cartItem);
+                const value = formatValue(cartItem);
                 return (
                   <Col key={cartItem.id} md={12} className="my-3">
                     <Row>
                       <Col className="text-left" md={6}>
                         <h6>{cartItem.title}</h6>
-                        <RemoveFromCart addon={cartItem} />
+                        {cartItem.title !== "Auditorium" &&
+                        cartItem.title !== "Turf" ? (
+                          <RemoveFromCart addon={cartItem} />
+                        ) : null}
                       </Col>
                       <Col className="text-right" md={6}>
-                        <span className="text-muted text-right">{price}</span>
+                        <span className="text-muted text-right">
+                          {price} * {cartItem.quantity} = {value}
+                        </span>
                       </Col>
                     </Row>
                   </Col>

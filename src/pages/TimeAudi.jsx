@@ -2,7 +2,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link, useHistory } from "react-router-dom";
 import * as ROUTES from "../constants/routes";
-import { Col, Container, Row, Card } from "react-bootstrap";
+import { Col, Container, Row, Card, Button } from "react-bootstrap";
 import styled from "styled-components";
 import axios from "axios";
 import ButtonCustom from "../components/ButtonCustom";
@@ -11,6 +11,7 @@ import Skeleton from "react-loading-skeleton";
 import AuthContext from "../context/auth/authContext";
 import toast from "react-hot-toast";
 import { useShoppingCart } from "use-shopping-cart";
+import { FaCheck, FaTimes } from "react-icons/fa";
 
 const Styled = styled.div`
   .background-photo {
@@ -24,8 +25,8 @@ const Styled = styled.div`
 
 const TimeAudi = () => {
   const [timingsAvailable, setTimingsAvailable] = useState([]);
-  const [chosenTime, setChosenTime] = useState("");
   const [isLoading, setIsLoading] = useState(true);
+  const [chosenTime, setChosenTime] = useState([]);
   const date = localStorage.getItem("date");
   const authContext = useContext(AuthContext);
   const history = useHistory();
@@ -36,24 +37,42 @@ const TimeAudi = () => {
   };
 
   const goingToAddons = () => {
-    if (!chosenTime) {
+    if (chosenTime.length === 0) {
       return toast.error("Please select a time slot");
     } else {
-      localStorage.setItem("time", chosenTime);
+      localStorage.setItem("time", JSON.stringify(chosenTime));
       localStorage.setItem("book", "audi");
       const book = {
         id: 1,
         title: "Auditorium",
         name: "Auditorium",
-        description: "Auditorium per hour booking",
+        description: "Auditorium per hour booking rate is ₹10000",
         price: 1000000,
         inCart: true,
         currency: "INR",
         sku: "1",
       };
-      addItem(book);
+      addItem(book, chosenTime.length);
       history.push(ROUTES.ADDONSAUDI);
     }
+  };
+
+  const handleAddTime = (timing) => {
+    const duplicate = chosenTime.find((el) => el === timing);
+    if (!duplicate) {
+      const newTime = chosenTime.slice(0);
+      newTime.push(timing);
+      toast.success(`${timing} selected`);
+      return setChosenTime(newTime);
+    } else {
+      toast.error("Time already selected");
+    }
+  };
+
+  const handleRemoveTime = (timing) => {
+    const newTime = chosenTime.filter((el) => el !== timing);
+    toast.success(`${timing} removed`);
+    return setChosenTime(newTime);
   };
 
   useEffect(() => {
@@ -108,28 +127,41 @@ const TimeAudi = () => {
               <Row className="text-center mb-3">
                 {timingsAvailable.map((timing, i) => (
                   <Col className="text-center" md="6" key={i}>
-                    <label style={{ width: "70%" }} className="mx-3">
-                      <input
-                        type="radio"
-                        name="timing"
-                        value={timing}
-                        onChange={(e) => setChosenTime(e.target.value)}
-                        checked={chosenTime === timing}
-                        className="card-input-element"
-                        style={{ display: "none" }}
-                      />
-                      <Card
-                        className="panel panel-default card-input rounded"
-                        style={{ margin: "10px", padding: "0px" }}
-                      >
-                        <Card.Header className="panel-heading">
-                          Slot {i + 1}
-                        </Card.Header>
-                        <Card.Body className="panel-body">
-                          <Card.Text>{timing}</Card.Text>
-                        </Card.Body>
-                      </Card>
-                    </label>
+                    <Card
+                      className="panel panel-default card-input rounded mx-5"
+                      style={{ margin: "10px", padding: "0px" }}
+                    >
+                      <Card.Header className="panel-heading">
+                        Slot {i + 1}
+                      </Card.Header>
+                      <Card.Body className="panel-body">
+                        <Card.Text>{timing}</Card.Text>
+                        <Card.Text>
+                          <Button
+                            // disabled={disabledAdd}
+                            className="flex ml-auto border-0 py-2 px-2 rounded m-1"
+                            onClick={() => handleAddTime(timing)}
+                            value={timing}
+                            variant="warning"
+                          >
+                            <span>
+                              <FaCheck size={12} />
+                            </span>
+                          </Button>
+                          <Button
+                            // disabled={disabledRemove}
+                            className="flex ml-auto border-0 py-2 px-2 rounded m-1"
+                            onClick={() => handleRemoveTime(timing)}
+                            value={timing}
+                            variant="danger"
+                          >
+                            <span>
+                              <FaTimes size={12} />
+                            </span>
+                          </Button>
+                        </Card.Text>
+                      </Card.Body>
+                    </Card>
                   </Col>
                 ))}
               </Row>

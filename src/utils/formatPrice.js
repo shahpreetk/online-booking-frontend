@@ -8,3 +8,11 @@ export default function formatPrice(addon) {
     language: navigator.language,
   });
 }
+
+export const formatValue = (addon) => {
+  return formatCurrencyString({
+    value: addon.value,
+    currency: "INR",
+    language: navigator.language,
+  });
+};
