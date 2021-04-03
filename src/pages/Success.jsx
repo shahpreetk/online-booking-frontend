@@ -28,7 +28,8 @@ export default function Result() {
   async function sendBooking() {
     const book = localStorage.getItem("book");
     const date = localStorage.getItem("date");
-    const time = localStorage.getItem("time");
+    const localtime = localStorage.getItem("time");
+    const time = JSON.parse(localtime);
     let addons = [];
     cartItems.map((item) => {
       if (item.id !== 1) {

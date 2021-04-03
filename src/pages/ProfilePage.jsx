@@ -105,7 +105,17 @@ const ProfilePage = () => {
                   <Card className="my-3 border-0 shadow-sm">
                     <Card.Body>
                       <Card.Title>Booking for : {booking.date}</Card.Title>
-                      <Card.Text>Time : {booking.time}</Card.Text>
+                      <Card.Text>
+                        Time :{" "}
+                        {booking.time.length === 1
+                          ? booking.time.map((time) => time)
+                          : booking.time.map((time) =>
+                              booking.time[booking.time.length - 1] ===
+                              booking.time.length
+                                ? time
+                                : time + ", "
+                            )}
+                      </Card.Text>
                       <Card.Text>
                         Addons :{" "}
                         {booking.addons.length === 0
