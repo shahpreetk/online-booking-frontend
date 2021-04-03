@@ -122,7 +122,11 @@ const Checkout = () => {
             </Row>
             <Row className="ml-3">
               <Col>
-                <p>{cartCount} Cart Items : </p>
+                <p>
+                  {cartCount === 1
+                    ? cartCount + " Cart Item : "
+                    : cartCount + " Cart Items : "}
+                </p>
               </Col>
             </Row>
             <Row className="mx-3 my-0">

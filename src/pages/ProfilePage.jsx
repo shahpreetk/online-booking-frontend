@@ -11,7 +11,6 @@ const ProfilePage = () => {
   const [turfBookings, setTurfBookings] = useState([]);
 
   function formatPrice(booking) {
-    console.log(booking);
     return formatCurrencyString({
       value: booking.cost,
       currency: "INR",
@@ -34,7 +33,6 @@ const ProfilePage = () => {
       .catch((err) => toast.error("Error getting Turf bookings."));
     return result;
   };
-  console.log(audiBookings);
   useEffect(() => {
     authContext.loadUser();
     getAudi();
@@ -55,18 +53,25 @@ const ProfilePage = () => {
             {audiBookings.map((booking) => {
               const price = formatPrice(booking);
               return (
-                <Col md={6}>
+                <Col md={6} key={booking.id}>
                   <Card className="my-3 border-0 shadow-sm">
                     <Card.Body>
                       <Card.Title>Booking for : {booking.date}</Card.Title>
                       <Card.Text>Time : {booking.time}</Card.Text>
                       <Card.Text>
                         Addons :{" "}
-                        {booking.addons.length !== 0
-                          ? booking.addons.map((addon) => addon.title + ", ")
-                          : "No addons were selected"}
+                        {booking.addons.length === 0
+                          ? "No addons were selected"
+                          : booking.addons.length !== 0 &&
+                            booking.addons.length === 1
+                          ? booking.addons.map((addon) => addon.title)
+                          : booking.addons.map((addon) =>
+                              addon.id === booking.addons.length
+                                ? addon.title
+                                : addon.title + ", "
+                            )}
                       </Card.Text>
-                      <Card.Subtitle>{price}</Card.Subtitle>
+                      <Card.Subtitle>Cost : {price}</Card.Subtitle>
                     </Card.Body>
                   </Card>
                 </Col>
@@ -79,27 +84,36 @@ const ProfilePage = () => {
       )}
       {turfBookings.length !== 0 ? (
         <>
-          <h5 className="mt-4 mb-3">Your Turf Bookings</h5>
-          {turfBookings.map((booking) => {
-            const price = formatPrice(booking);
-            return (
-              <Col md={6}>
-                <Card className="my-3 border-0 shadow-sm">
-                  <Card.Body>
-                    <Card.Title>Booking for : {booking.date}</Card.Title>
-                    <Card.Text>Time : {booking.time}</Card.Text>
-                    <Card.Text>
-                      Addons :{" "}
-                      {booking.addons.length !== 0
-                        ? booking.addons.map((addon) => addon.title + ", ")
-                        : "No addons were selected"}
-                    </Card.Text>
-                    <Card.Subtitle>{price}</Card.Subtitle>
-                  </Card.Body>
-                </Card>
-              </Col>
-            );
-          })}
+          <h5 className="mt-4 mb-2">Your Turf Bookings</h5>
+          <Row>
+            {turfBookings.map((booking) => {
+              const price = formatPrice(booking);
+              return (
+                <Col md={6} key={booking.id}>
+                  <Card className="my-3 border-0 shadow-sm">
+                    <Card.Body>
+                      <Card.Title>Booking for : {booking.date}</Card.Title>
+                      <Card.Text>Time : {booking.time}</Card.Text>
+                      <Card.Text>
+                        Addons :{" "}
+                        {booking.addons.length === 0
+                          ? "No addons were selected"
+                          : booking.addons.length !== 0 &&
+                            booking.addons.length === 1
+                          ? booking.addons.map((addon) => addon.title)
+                          : booking.addons.map((addon) =>
+                              addon.id === booking.addons.length
+                                ? addon.title
+                                : addon.title + ", "
+                            )}
+                      </Card.Text>
+                      <Card.Subtitle>Cost : {price}</Card.Subtitle>
+                    </Card.Body>
+                  </Card>
+                </Col>
+              );
+            })}
+          </Row>
         </>
       ) : (
         <h5 className="mt-4 mb-3">You have no Turf Bookings</h5>
