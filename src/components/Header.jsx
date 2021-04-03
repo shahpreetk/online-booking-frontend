@@ -68,11 +68,11 @@ const Header = () => {
 
   const authLinks = (
     <Nav className="ml-auto">
-      <Nav.Item className="pl-2 pr-2 py-2" onClick={Clearing}>
-        <Link to={ROUTES.PROFILE}>Profile</Link>
-      </Nav.Item>
       <Nav.Item className="pl-2 pr-2 py-2" onClick={onLogout}>
         <a href={ROUTES.LOGIN}>Logout</a>
+      </Nav.Item>
+      <Nav.Item className="pl-2 pr-2 py-2" onClick={Clearing}>
+        <Link to={ROUTES.PROFILE}>Profile</Link>
       </Nav.Item>
       <ButtonCustom
         parentfunction={() => {
