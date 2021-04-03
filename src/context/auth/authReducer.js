@@ -23,6 +23,7 @@ export default function authReducer(state, action) {
     case LOGIN_SUCCESS:
       localStorage.setItem("token", action.payload.token);
       localStorage.setItem("email", action.payload.user.email);
+      localStorage.setItem("name", action.payload.user.name);
       return {
         ...state,
         ...action.payload,

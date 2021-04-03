@@ -1,6 +1,7 @@
 //@ts-check
 export const LOGIN = "/login";
 export const SIGN_UP = "/signup";
+export const PROFILE = "/profile";
 export const BOOKING = "/booking";
 export const TIMEOFAUDI = "/booking/timeA";
 export const ADDONSAUDI = "/booking/addonsA";

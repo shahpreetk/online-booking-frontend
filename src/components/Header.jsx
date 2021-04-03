@@ -59,17 +59,24 @@ const Header = () => {
     clearCart();
   };
 
+  const Clearing = () => {
+    clearCart();
+    localStorage.setItem("date", "");
+    localStorage.setItem("book", "");
+    localStorage.setItem("time", "");
+  };
+
   const authLinks = (
     <Nav className="ml-auto">
+      <Nav.Item className="pl-2 pr-2 py-2" onClick={Clearing}>
+        <Link to={ROUTES.PROFILE}>Profile</Link>
+      </Nav.Item>
       <Nav.Item className="pl-2 pr-2 py-2" onClick={onLogout}>
         <a href={ROUTES.LOGIN}>Logout</a>
       </Nav.Item>
       <ButtonCustom
         parentfunction={() => {
-          clearCart();
-          localStorage.setItem("date", "");
-          localStorage.setItem("book", "");
-          localStorage.setItem("time", "");
+          Clearing();
           history.push(ROUTES.BOOKING);
         }}
         buttonContent="Book Now"
