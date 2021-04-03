@@ -81,7 +81,7 @@ const BookingPage = () => {
                   date={date}
                   onDateChange={(date) => {
                     setDate(date);
-                    const formatted = moment(date).format("YYYY-DD-MM");
+                    const formatted = moment(date).format("YYYY-MM-DD");
                     setResult(formatted);
                   }}
                   focused={focused}
