@@ -4,11 +4,13 @@ import { Container, Row, Col, Card } from "react-bootstrap";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { formatCurrencyString } from "use-shopping-cart";
+import Skeleton from "react-loading-skeleton";
 
 const ProfilePage = () => {
   const authContext = useContext(AuthContext);
   const [audiBookings, setAudiBookings] = useState([]);
   const [turfBookings, setTurfBookings] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   function formatPrice(booking) {
     return formatCurrencyString({
@@ -21,7 +23,10 @@ const ProfilePage = () => {
   const getAudi = async () => {
     const result = await axios
       .get("/baudis")
-      .then((res) => setAudiBookings(res.data))
+      .then((res) => {
+        setIsLoading(false);
+        return setAudiBookings(res.data);
+      })
       .catch((err) => toast.error("Error getting Auditorium bookings."));
     return result;
   };
@@ -29,7 +34,10 @@ const ProfilePage = () => {
   const getTurf = async () => {
     const result = await axios
       .get("/bTurfs")
-      .then((res) => setTurfBookings(res.data))
+      .then((res) => {
+        setIsLoading(false);
+        setTurfBookings(res.data);
+      })
       .catch((err) => toast.error("Error getting Turf bookings."));
     return result;
   };
@@ -46,9 +54,11 @@ const ProfilePage = () => {
           <h4>Hey, {localStorage.getItem("name")}!</h4>
         </Col>
       </Row>
-      {audiBookings.length !== 0 ? (
+      <h5 className="mt-4 mb-2">Your Auditorium Bookings</h5>
+      {isLoading ? (
+        <Skeleton count={2} height={100} />
+      ) : audiBookings.length !== 0 ? (
         <>
-          <h5 className="mt-4 mb-2">Your Auditorium Bookings</h5>
           <Row>
             {audiBookings.map((booking) => {
               const price = formatPrice(booking);
@@ -82,9 +92,11 @@ const ProfilePage = () => {
       ) : (
         <h5 className="mt-4 mb-3">You have no Auditorium Bookings</h5>
       )}
-      {turfBookings.length !== 0 ? (
+      <h5 className="mt-4 mb-2">Your Turf Bookings</h5>
+      {isLoading ? (
+        <Skeleton count={2} height={100} />
+      ) : turfBookings.length !== 0 ? (
         <>
-          <h5 className="mt-4 mb-2">Your Turf Bookings</h5>
           <Row>
             {turfBookings.map((booking) => {
               const price = formatPrice(booking);
