@@ -10,13 +10,11 @@ const Styles = styled.div`
   .main-footer {
     background-color: #9ca3af;
     color: #4b5563;
-    /* font-family: 'Bitter', serif; */
     letter-spacing: 1px;
   }
   .footer-copyright-text {
     background-color: #d1d5db;
     color: #1f2937;
-    /* font-family: 'Work Sans', sans-serif; */
   }
   a {
     color: #204e56;
@@ -42,7 +40,6 @@ const Footer = () => {
           <div className="container-fluid text-center text-center main-footer">
             <Container>
               <div className="row">
-                {/* <hr className="clearfix w-100 d-md-none pb-3" /> */}
                 <div className="m-2 mb-md-0 mb-3">
                   <h5 className="font-weight-bold pt-2 foot-header">
                     An initiative by EXTC Department of KJSIEIT
@@ -63,13 +60,8 @@ const Footer = () => {
               target="_blank"
               href="https://github.com/shahpreetk/online-booking-frontend"
             >
-              {/* <a
-              rel="noreferrer"
-              target="_blank"
-              href="https://kjsieit-onlinebooking.netlify.app/"
-            > */}
               <Button variant="outline-dark" className="shadow-none">
-                here
+                on GitHub
               </Button>
             </a>
           </div>
