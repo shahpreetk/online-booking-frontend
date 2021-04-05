@@ -8,7 +8,7 @@ import { formatCurrencyString } from "use-shopping-cart";
 import AuthContext from "../context/auth/authContext";
 import * as ROUTES from "../constants/routes";
 import { useShoppingCart } from "use-shopping-cart";
-import formatPrice from "../utils/formatPrice";
+import { formatValue } from "../utils/formatPrice";
 
 function useQueryString() {
   return new URLSearchParams(useLocation().search);
@@ -43,7 +43,6 @@ export default function Result() {
         addons,
         cost: totalPrice,
       };
-
       return await axios
         .post("/baudis", bAudi)
         .then((res) => {
@@ -58,7 +57,6 @@ export default function Result() {
         addons,
         cost: totalPrice,
       };
-      console.log(bTurf);
       return await axios
         .post("/bturfs", bTurf)
         .then((res) => res.data)
@@ -154,13 +152,13 @@ export default function Result() {
             Cart Details :
           </h3>
           {cartItems.map((cartItem) => {
-            const price = formatPrice(cartItem);
+            const value = formatValue(cartItem);
             return (
               <>
                 <Row>
                   <Col>
                     <h6 className="text-dark">
-                      {cartItem.title} : {price}
+                      {cartItem.title} : {value}
                     </h6>
                   </Col>
                 </Row>
