@@ -67,7 +67,17 @@ const ProfilePage = () => {
                   <Card className="my-3 border-0 shadow-sm">
                     <Card.Body>
                       <Card.Title>Booking for : {booking.date}</Card.Title>
-                      <Card.Text>Time : {booking.time}</Card.Text>
+                      <Card.Text>
+                        Time :{" "}
+                        {booking.time.length === 1
+                          ? booking.time.map((time) => time)
+                          : booking.time.map((time, i) =>
+                              booking.time[i] ===
+                              booking.time[booking.time.length - 1]
+                                ? time
+                                : time + ", "
+                            )}
+                      </Card.Text>
                       <Card.Text>
                         Addons :{" "}
                         {booking.addons.length === 0
@@ -75,8 +85,8 @@ const ProfilePage = () => {
                           : booking.addons.length !== 0 &&
                             booking.addons.length === 1
                           ? booking.addons.map((addon) => addon.title)
-                          : booking.addons.map((addon) =>
-                              addon.id === booking.addons.length
+                          : booking.addons.map((addon, i) =>
+                              i === booking.addons.length - 1
                                 ? addon.title
                                 : addon.title + ", "
                             )}
@@ -109,9 +119,9 @@ const ProfilePage = () => {
                         Time :{" "}
                         {booking.time.length === 1
                           ? booking.time.map((time) => time)
-                          : booking.time.map((time) =>
-                              booking.time[booking.time.length - 1] ===
-                              booking.time.length
+                          : booking.time.map((time, i) =>
+                              booking.time[i] ===
+                              booking.time[booking.time.length - 1]
                                 ? time
                                 : time + ", "
                             )}
