@@ -1,10 +1,11 @@
 //@ts-check
 import React, { useEffect, useContext } from "react";
-import { Carousel, Card, Col, Container, Row } from "react-bootstrap";
+import { Alert, Carousel, Card, Col, Container, Row } from "react-bootstrap";
 import AuthContext from "../context/auth/authContext";
 import Title from "../components/Title";
 import FeaturesCard from "../components/FeaturesCard";
 import ProfileCard from "../components/ProfileCard";
+import { FaInfoCircle } from "react-icons/fa";
 
 const HomePage = () => {
   const authContext = useContext(AuthContext);
@@ -16,6 +17,11 @@ const HomePage = () => {
   return (
     <>
       <Container className="py-4 px-6">
+        <Alert variant="info" className="text-center">
+          <FaInfoCircle size={20} />
+          <span className="ml-2 font-weight-bold">COVID-19 Updates! </span>
+          The Auditorium and Turf will remain shut till Friday, 30th April 2021.
+        </Alert>
         <Carousel className="shadow-lg p-3 mb-2 mt-3 bg-white">
           <Carousel.Item>
             <img

@@ -28,7 +28,6 @@ const FeaturesCard = ({
             <BsCheckCircle size={20} /> {feature4}
           </ListGroup.Item>
         </ListGroup>
-        {/* <Button variant="primary">Go somewhere</Button> */}
       </Card.Body>
     </Card>
   );
