@@ -85,12 +85,12 @@ const TimeTurf = () => {
   };
 
   useEffect(() => {
-    checkEmail();
     axios.get(`/bturfs/${date}`).then((res) => {
       setIsLoading(false);
       setTimingsAvailable(res.data);
       authContext.loadUser();
     });
+    checkEmail();
     // eslint-disable-next-line
   }, [date]);
 

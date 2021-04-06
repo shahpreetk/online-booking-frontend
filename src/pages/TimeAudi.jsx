@@ -38,12 +38,12 @@ const TimeAudi = () => {
   };
 
   const checkEmail = () => {
-  const email = localStorage.getItem("email");
-  const isSomaiya = email.split("@")[1];
-  if (isSomaiya === "somaiya.edu") {
-    setSomaiya(true);
-  } else setSomaiya(false);
-};
+    const email = localStorage.getItem("email");
+    const isSomaiya = email.split("@")[1];
+    if (isSomaiya === "somaiya.edu") {
+      setSomaiya(true);
+    } else setSomaiya(false);
+  };
 
   const goingToAddons = () => {
     if (chosenTime.length === 0) {
@@ -85,12 +85,12 @@ const TimeAudi = () => {
   };
 
   useEffect(() => {
-    checkEmail()
     axios.get(`/baudis/${date}`).then((res) => {
       setIsLoading(false);
       setTimingsAvailable(res.data);
       authContext.loadUser();
     });
+    checkEmail();
     // eslint-disable-next-line
   }, [date]);
 

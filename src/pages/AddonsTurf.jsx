@@ -15,6 +15,7 @@ import { useShoppingCart } from "use-shopping-cart";
 
 const AddonsTurf = () => {
   const [isLoading, setIsLoading] = useState(true);
+  const [somaiya, setSomaiya] = useState(false);
   const [addons, setAddons] = useState([]);
   const authContext = useContext(AuthContext);
   const { clearCart } = useShoppingCart();
@@ -25,8 +26,17 @@ const AddonsTurf = () => {
     clearCart();
   };
 
+  const checkEmail = () => {
+    const email = localStorage.getItem("email");
+    const isSomaiya = email.split("@")[1];
+    if (isSomaiya === "somaiya.edu") {
+      setSomaiya(true);
+    } else setSomaiya(false);
+  };
+
   useEffect(() => {
     authContext.loadUser();
+    checkEmail();
     setAddons(addonsTurf);
     setIsLoading(false);
     //eslint-disable-next-line
@@ -78,7 +88,7 @@ const AddonsTurf = () => {
                       <Card.Header>{addon.title}</Card.Header>
                       <Card.Body>
                         <Card.Text>{addon.description}</Card.Text>
-                        <Card.Text>{price}</Card.Text>
+                        <Card.Text>{somaiya ? "₹1.00" : price}</Card.Text>
                         <AddToCart addon={addon} />
                         <RemoveFromCart addon={addon} />
                       </Card.Body>
