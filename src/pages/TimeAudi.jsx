@@ -56,7 +56,7 @@ const TimeAudi = () => {
         title: "Auditorium",
         name: "Auditorium",
         description: "Auditorium per hour booking rate is ₹10000",
-        price: somaiya ? 1 : 1000000,
+        price: somaiya ? 100 : 1000000,
         inCart: true,
         currency: "INR",
         sku: "1",

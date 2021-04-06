@@ -1,19 +1,36 @@
 //@ts-check
-import React, { useEffect } from "react";
+import React, { useState,useEffect } from "react";
 import { useShoppingCart } from "use-shopping-cart";
 import { Button } from "react-bootstrap";
 import toast from "react-hot-toast";
 
 export default function AddToCart({ addon }) {
+  const [somaiya,setSomaiya] = useState(false)
   const { addItem } = useShoppingCart();
 
   const handleAddToCart = () => {
+    if(somaiya){
+      addItem({id : addon.id,
+    title:addon.title,
+    description: addon.description,
+    price: 0})
+    }else{
     addItem(addon);
+    }
     addon.inCart = true;
     toast.success(`${addon.title} Addon added to cart`);
   };
 
+  const checkEmail = () => {
+  const email = localStorage.getItem("email");
+  const isSomaiya = email.split("@")[1];
+  if (isSomaiya === "somaiya.edu") {
+    setSomaiya(true);
+  } else setSomaiya(false);
+};
+
   useEffect(() => {
+    checkEmail()
     addon.inCart = false;
     // eslint-disable-next-line
   }, []);
