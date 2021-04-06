@@ -144,9 +144,23 @@ const Checkout = () => {
                         ) : null}
                       </Col>
                       <Col className="text-right" md={6}>
-                        <span className="text-muted text-right">
-                          {price} * {cartItem.quantity} = {value}
-                        </span>
+                        <Row className="text-muted text-right">
+                          <Col className="mx-0 text-left px-0">
+                            <span className="mx-0">{price}</span>
+                          </Col>
+                          <Col className="mx-0 text-center px-0">
+                            <span className="mx-0">*</span>
+                          </Col>
+                          <Col className="mx-0 text-center px-0">
+                            <span className="mx-0">{cartItem.quantity}</span>
+                          </Col>
+                          <Col className="mx-0 text-center px-0">
+                            <span className="mx-0"> = </span>
+                          </Col>
+                          <Col className="mx-0 text-right px-0">
+                            <span className="mx-0"> {value} </span>
+                          </Col>
+                        </Row>
                       </Col>
                     </Row>
                   </Col>
