@@ -67,11 +67,11 @@ const Checkout = () => {
       setIsLoading(false);
       return toast.error("Cart is empty. Please select items");
     }
-    if (totalPrice < 500000) {
-      setDisabled(true);
-      setIsLoading(false);
-      return toast.error("Please select the Turf or Auditorium");
-    }
+    // if (totalPrice < 500000) {
+    //   setDisabled(true);
+    //   setIsLoading(false);
+    //   return toast.error("Please select the Turf or Auditorium");
+    // }
     const { sessionId } = await fetchCheckoutSession({
       quantity: 1,
       amount: totalPrice,
@@ -146,9 +146,7 @@ const Checkout = () => {
                       <Col className="text-right" md={6}>
                         <Row className="text-muted text-right">
                           <Col className="mx-0 text-left px-0">
-                            <span className="mx-0">
-                              {price}
-                            </span>
+                            <span className="mx-0">{price}</span>
                           </Col>
                           <Col className="mx-0 text-center px-0">
                             <span className="mx-0">*</span>
@@ -160,10 +158,7 @@ const Checkout = () => {
                             <span className="mx-0"> = </span>
                           </Col>
                           <Col className="mx-0 text-right px-0">
-                            <span className="mx-0">
-                              {" "}
-                              {value}{" "}
-                            </span>
+                            <span className="mx-0"> {value} </span>
                           </Col>
                         </Row>
                       </Col>

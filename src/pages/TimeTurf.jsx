@@ -27,6 +27,7 @@ const TimeTurf = () => {
   const [timingsAvailable, setTimingsAvailable] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [chosenTime, setChosenTime] = useState([]);
+  const [somaiya, setSomaiya] = useState(false);
   const date = localStorage.getItem("date");
   const authContext = useContext(AuthContext);
   const history = useHistory();
@@ -34,6 +35,14 @@ const TimeTurf = () => {
 
   const handleGoingback = () => {
     localStorage.setItem("date", "");
+  };
+
+  const checkEmail = () => {
+    const email = localStorage.getItem("email");
+    const isSomaiya = email.split("@")[1];
+    if (isSomaiya === "somaiya.edu") {
+      setSomaiya(true);
+    } else setSomaiya(false);
   };
 
   const goingToAddons = () => {
@@ -47,7 +56,7 @@ const TimeTurf = () => {
         title: "Turf",
         name: "Turf",
         description: "Turf per hour booking rate is ₹5000",
-        price: 500000,
+        price: somaiya ? 100 : 500000,
         inCart: true,
         currency: "INR",
         sku: "1",
@@ -76,6 +85,7 @@ const TimeTurf = () => {
   };
 
   useEffect(() => {
+    checkEmail();
     axios.get(`/bturfs/${date}`).then((res) => {
       setIsLoading(false);
       setTimingsAvailable(res.data);
