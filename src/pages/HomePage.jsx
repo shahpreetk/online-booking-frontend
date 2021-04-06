@@ -5,7 +5,6 @@ import AuthContext from "../context/auth/authContext";
 import Title from "../components/Title";
 import FeaturesCard from "../components/FeaturesCard";
 import ProfileCard from "../components/ProfileCard";
-import { FaInfoCircle } from "react-icons/fa";
 
 const HomePage = () => {
   const authContext = useContext(AuthContext);
@@ -18,9 +17,11 @@ const HomePage = () => {
     <>
       <Container className="py-4 px-6">
         <Alert variant="info" className="text-center">
-          <FaInfoCircle size={20} />
-          <span className="ml-2 font-weight-bold">COVID-19 Updates! </span>
-          The Auditorium and Turf will remain shut till Friday, 30th April 2021.
+          <span className="font-weight-bold">
+            !!!! IMPORTANT: COVID-19 Updates!{" "}
+          </span>
+          The Auditorium and Turf will remain shut till Friday, 30th April 2021{" "}
+          <span className="font-weight-bold">!!!!</span>
         </Alert>
         <Carousel className="shadow-lg p-3 mb-2 mt-3 bg-white">
           <Carousel.Item>
@@ -154,7 +155,7 @@ const HomePage = () => {
               photo="/assets/disha-photo.jpeg"
               name="Disha Parekh"
               designation="Student"
-              linkedin=""
+              linkedin="https://www.linkedin.com/in/disha-parekh-949902203"
               github=""
             />
           </Col>
