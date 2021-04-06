@@ -22,6 +22,8 @@ const ProfileCard = ({ name, photo, designation, linkedin, github }) => {
               href={linkedin}
               target="_blank"
               rel="noreferrer"
+              aria-label={linkedin}
+              title={linkedin}
               style={{ color: "#75191e" }}
             >
               {" "}
@@ -33,6 +35,8 @@ const ProfileCard = ({ name, photo, designation, linkedin, github }) => {
               href={github}
               target="_blank"
               rel="noreferrer"
+              aria-label={github}
+              title={github}
               style={{ color: "#75191e" }}
             >
               {" "}
