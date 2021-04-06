@@ -27,6 +27,7 @@ const TimeAudi = () => {
   const [timingsAvailable, setTimingsAvailable] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [chosenTime, setChosenTime] = useState([]);
+  const [somaiya, setSomaiya] = useState(false);
   const date = localStorage.getItem("date");
   const authContext = useContext(AuthContext);
   const history = useHistory();
@@ -35,6 +36,14 @@ const TimeAudi = () => {
   const handleGoingback = () => {
     localStorage.setItem("date", "");
   };
+
+  const checkEmail = () => {
+  const email = localStorage.getItem("email");
+  const isSomaiya = email.split("@")[1];
+  if (isSomaiya === "somaiya.edu") {
+    setSomaiya(true);
+  } else setSomaiya(false);
+};
 
   const goingToAddons = () => {
     if (chosenTime.length === 0) {
@@ -47,7 +56,7 @@ const TimeAudi = () => {
         title: "Auditorium",
         name: "Auditorium",
         description: "Auditorium per hour booking rate is ₹10000",
-        price: 1000000,
+        price: somaiya ? 1 : 1000000,
         inCart: true,
         currency: "INR",
         sku: "1",
@@ -76,6 +85,7 @@ const TimeAudi = () => {
   };
 
   useEffect(() => {
+    checkEmail()
     axios.get(`/baudis/${date}`).then((res) => {
       setIsLoading(false);
       setTimingsAvailable(res.data);
