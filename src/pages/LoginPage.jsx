@@ -47,7 +47,7 @@ const LoginPage = () => {
     document.title = "Login | BookIt";
 
     if (isAuthenticated) {
-      history.push("/booking");
+      history.push(ROUTES.BOOKING);
     }
     if (error) {
       toast.error(error);
