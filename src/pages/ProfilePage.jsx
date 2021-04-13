@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import AuthContext from "../context/auth/authContext";
-import { Container, Row, Col, Card } from "react-bootstrap";
+import { Badge, Container, Row, Col, Card } from "react-bootstrap";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { formatCurrencyString } from "use-shopping-cart";
@@ -29,6 +29,21 @@ const ProfilePage = () => {
       })
       .catch((err) => toast.error("Error getting Auditorium bookings."));
     return result;
+  };
+
+  const getBadge = (date) => {
+    const iso = new Date();
+    const d = new Date(iso.getFullYear(), iso.getMonth(), iso.getDate());
+    const myDate = new Date(date);
+    if (d > myDate) {
+      return (
+        <div className="ml-auto">
+          <Badge pill variant="danger">
+            Past
+          </Badge>
+        </div>
+      );
+    } else return null;
   };
 
   const getTurf = async () => {
@@ -66,7 +81,12 @@ const ProfilePage = () => {
                 <Col md={6} key={booking.id}>
                   <Card className="my-3 border-0 shadow-sm">
                     <Card.Body>
-                      <Card.Title>Booking for : {booking.date}</Card.Title>
+                      <div className="d-flex">
+                        <div>
+                          <Card.Title>Booking for : {booking.date}</Card.Title>
+                        </div>
+                        {getBadge(booking.date)}
+                      </div>
                       <Card.Text>
                         Time :{" "}
                         {booking.time.length === 1
@@ -114,7 +134,12 @@ const ProfilePage = () => {
                 <Col md={6} key={booking.id}>
                   <Card className="my-3 border-0 shadow-sm">
                     <Card.Body>
-                      <Card.Title>Booking for : {booking.date}</Card.Title>
+                      <div className="d-flex">
+                        <div>
+                          <Card.Title>Booking for : {booking.date}</Card.Title>
+                        </div>
+                        {getBadge(booking.date)}
+                      </div>
                       <Card.Text>
                         Time :{" "}
                         {booking.time.length === 1
