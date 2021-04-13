@@ -43,7 +43,15 @@ const ProfilePage = () => {
           </Badge>
         </div>
       );
-    } else return null;
+    } else {
+      return (
+        <div className="ml-auto">
+          <Badge pill variant="success">
+            Scheduled
+          </Badge>
+        </div>
+      );
+    }
   };
 
   const getTurf = async () => {
