@@ -38,9 +38,8 @@ const SignUpPage = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    setIsLoading(true);
     register({ name, email, password, age });
-    setIsLoading(false);
+    setIsLoading(true);
   };
   useEffect(() => {
     document.title = "SignUp | BookIt";
@@ -51,6 +50,7 @@ const SignUpPage = () => {
     if (error) {
       toast.error(error);
       clearErrors();
+      setIsLoading(false);
     }
   }, [clearErrors, error, isAuthenticated, history]);
   return (

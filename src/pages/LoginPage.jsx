@@ -51,6 +51,7 @@ const LoginPage = () => {
     if (error) {
       toast.error(error);
       clearErrors();
+      setIsLoading(false);
     }
   }, [clearErrors, error, isAuthenticated, history]);
   return (
