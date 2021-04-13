@@ -37,9 +37,8 @@ const LoginPage = () => {
     if (isInvalid) {
       toast.error("Please fill in all fields");
     } else {
-      setIsLoading(true);
       login({ email, password });
-      setIsLoading(false);
+      setIsLoading(true);
     }
   };
 
@@ -105,7 +104,7 @@ const LoginPage = () => {
                     type="submit"
                     style={{ backgroundColor: "#a72329", border: "none" }}
                   >
-                    {isLoading ? "Processing ..." : "Log In"}
+                    {!isInvalid && isLoading ? "Processing ..." : "Log In"}
                   </Button>
                   <Form.Group>
                     <p className="text-sm mt-3">
