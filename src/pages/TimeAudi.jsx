@@ -32,7 +32,6 @@ const TimeAudi = () => {
   const authContext = useContext(AuthContext);
   const history = useHistory();
   const { addItem } = useShoppingCart();
-
   const handleGoingback = () => {
     localStorage.setItem("date", "");
   };
@@ -135,45 +134,53 @@ const TimeAudi = () => {
           ) : (
             <>
               <Row className="text-center mb-3">
-                {timingsAvailable.map((timing, i) => (
-                  <Col className="text-center" md="6" key={i}>
-                    <Card
-                      className="panel panel-default card-input rounded mx-5"
-                      style={{ margin: "10px", padding: "0px" }}
-                    >
-                      <Card.Header className="panel-heading">
-                        Slot {i + 1}
-                      </Card.Header>
-                      <Card.Body className="panel-body">
-                        <Card.Text>{timing}</Card.Text>
-                        <Card.Text>
-                          <Button
-                            // disabled={disabledAdd}
-                            className="flex ml-auto border-0 py-2 px-2 rounded m-1"
-                            onClick={() => handleAddTime(timing)}
-                            value={timing}
-                            variant="warning"
-                          >
-                            <span>
-                              <FaCheck size={12} />
-                            </span>
-                          </Button>
-                          <Button
-                            // disabled={disabledRemove}
-                            className="flex ml-auto border-0 py-2 px-2 rounded m-1"
-                            onClick={() => handleRemoveTime(timing)}
-                            value={timing}
-                            variant="danger"
-                          >
-                            <span>
-                              <FaTimes size={12} />
-                            </span>
-                          </Button>
-                        </Card.Text>
-                      </Card.Body>
-                    </Card>
-                  </Col>
-                ))}
+                {timingsAvailable.map((timing, i) => {
+                  const bgColor =
+                    chosenTime.find((el) => el === timing) === timing
+                      ? "success"
+                      : "dark";
+                  return (
+                    <Col className="text-center" md="6" key={i}>
+                      <Card
+                        className="panel panel-default card-input rounded mx-5"
+                        style={{ margin: "10px", padding: "0px" }}
+                      >
+                        <Card.Header
+                          className={`panel-heading bg-${bgColor} text-white`}
+                        >
+                          Slot {i + 1}
+                        </Card.Header>
+                        <Card.Body className="panel-body">
+                          <Card.Text>{timing}</Card.Text>
+                          <Card.Text>
+                            <Button
+                              // disabled={disabledAdd}
+                              className="flex ml-auto border-0 py-2 px-2 rounded m-1"
+                              onClick={() => handleAddTime(timing)}
+                              value={timing}
+                              variant="warning"
+                            >
+                              <span>
+                                <FaCheck size={12} />
+                              </span>
+                            </Button>
+                            <Button
+                              // disabled={disabledRemove}
+                              className="flex ml-auto border-0 py-2 px-2 rounded m-1"
+                              onClick={() => handleRemoveTime(timing)}
+                              value={timing}
+                              variant="danger"
+                            >
+                              <span>
+                                <FaTimes size={12} />
+                              </span>
+                            </Button>
+                          </Card.Text>
+                        </Card.Body>
+                      </Card>
+                    </Col>
+                  );
+                })}
               </Row>
             </>
           )}
