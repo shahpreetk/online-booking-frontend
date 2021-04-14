@@ -5,6 +5,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import { formatCurrencyString } from "use-shopping-cart";
 import Skeleton from "react-loading-skeleton";
+import { FaTrashAlt } from "react-icons/fa";
 
 const ProfilePage = () => {
   const authContext = useContext(AuthContext);
@@ -31,26 +32,25 @@ const ProfilePage = () => {
     return result;
   };
 
-  const getBadge = (date) => {
-    const iso = new Date();
-    const d = new Date(iso.getFullYear(), iso.getMonth(), iso.getDate());
-    const myDate = new Date(date);
-    if (d > myDate) {
-      return (
-        <div className="ml-auto">
-          <Badge pill variant="danger">
-            Past
-          </Badge>
-        </div>
-      );
+  const deleteAudi = async (id) => {
+    const userFeedback = window.confirm(
+      "Are you sure you want to delete this booking?"
+    );
+    if (userFeedback) {
+      try {
+        await axios.delete(`/baudis/${id}`).then((res) => {
+          setIsLoading(false);
+          console.log(res.data);
+
+          const bookings = audiBookings.filter((item) => item.id !== id);
+          setAudiBookings(bookings);
+          window.location.reload();
+        });
+      } catch (err) {
+        toast.error(err);
+      }
     } else {
-      return (
-        <div className="ml-auto">
-          <Badge pill variant="success">
-            Scheduled
-          </Badge>
-        </div>
-      );
+      return null;
     }
   };
 
@@ -64,6 +64,75 @@ const ProfilePage = () => {
       .catch((err) => toast.error("Error getting Turf bookings."));
     return result;
   };
+
+  const deleteTurf = async (id) => {
+    const userFeedback = window.confirm(
+      "Are you sure you want to delete this booking?"
+    );
+    if (userFeedback) {
+      try {
+        await axios.delete(`/bturfs/${id}`).then((res) => {
+          setIsLoading(false);
+          console.log(res.data);
+
+          const bookings = turfBookings.filter((item) => item.id !== id);
+          setTurfBookings(bookings);
+          window.location.reload();
+        });
+      } catch (err) {
+        toast.error(err);
+      }
+    } else return null;
+  };
+
+  const getBadgeAudi = (date, id) => {
+    const iso = new Date();
+    const d = new Date(iso.getFullYear(), iso.getMonth(), iso.getDate());
+    const myDate = new Date(date);
+    if (d > myDate) {
+      return (
+        <div className="ml-auto">
+          <Badge pill variant="danger">
+            Past
+          </Badge>{" "}
+          <FaTrashAlt size={20} color="red" onClick={() => deleteAudi(id)} />
+        </div>
+      );
+    } else {
+      return (
+        <div className="ml-auto">
+          <Badge pill variant="success">
+            Scheduled
+          </Badge>
+        </div>
+      );
+    }
+  };
+
+  const getBadgeTurf = (date, id) => {
+    const iso = new Date();
+    const d = new Date(iso.getFullYear(), iso.getMonth(), iso.getDate());
+    const myDate = new Date(date);
+    if (d > myDate) {
+      return (
+        <div className="ml-auto">
+          <Badge pill variant="danger">
+            Past
+          </Badge>{" "}
+          <FaTrashAlt size={20} color="red" onClick={() => deleteTurf(id)} />
+        </div>
+      );
+    } else {
+      return (
+        <div className="ml-auto">
+          <Badge pill variant="success">
+            Scheduled
+          </Badge>
+        </div>
+      );
+    }
+  };
+
   useEffect(() => {
     authContext.loadUser();
     getAudi();
@@ -93,7 +162,7 @@ const ProfilePage = () => {
                         <div>
                           <Card.Title>Booking for : {booking.date}</Card.Title>
                         </div>
-                        {getBadge(booking.date)}
+                        {getBadgeAudi(booking.date, booking._id)}
                       </div>
                       <Card.Text>
                         Time :{" "}
@@ -146,7 +215,7 @@ const ProfilePage = () => {
                         <div>
                           <Card.Title>Booking for : {booking.date}</Card.Title>
                         </div>
-                        {getBadge(booking.date)}
+                        {getBadgeTurf(booking.date, booking._id)}
                       </div>
                       <Card.Text>
                         Time :{" "}

@@ -33,7 +33,7 @@ const stripePromise = loadStripe(
 );
 
 axios.defaults.baseURL = "https://onlinebooking-backend.herokuapp.com";
-// axios.defaults.baseURL = "http://localhost:3000";
+// axios.defaults.baseURL = "http://localhost:3010";
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
