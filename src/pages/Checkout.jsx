@@ -87,6 +87,7 @@ const Checkout = () => {
   };
 
   useEffect(() => {
+    document.title = "Checkout | BookIt";
     authContext.loadUser();
     setIsLoading(false);
     setDisabled(false);

@@ -134,6 +134,7 @@ const ProfilePage = () => {
   };
 
   useEffect(() => {
+    document.title = "Profile | BookIt";
     authContext.loadUser();
     getAudi();
     getTurf();
