@@ -196,9 +196,15 @@ const ProfilePage = () => {
               );
             })}
           </Row>
+          <hr />
         </>
       ) : (
-        <h5 className="mt-4 mb-3">You have no Auditorium Bookings</h5>
+        <>
+          <h6 className="mt-4 mb-3" style={{ color: "#a72329" }}>
+            You have no Auditorium Bookings
+          </h6>
+          <hr />
+        </>
       )}
       <h5 className="mt-4 mb-2">Your Turf Bookings</h5>
       {isLoading ? (
@@ -251,7 +257,11 @@ const ProfilePage = () => {
           </Row>
         </>
       ) : (
-        <h5 className="mt-4 mb-3">You have no Turf Bookings</h5>
+        <>
+          <h6 className="mt-4 mb-3" style={{ color: "#a72329" }}>
+            You have no Turf Bookings
+          </h6>
+        </>
       )}
     </Container>
   );
