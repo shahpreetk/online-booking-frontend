@@ -16,7 +16,7 @@ const Styled = styled.div`
 const SignUpPage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const authContext = useContext(AuthContext);
-  const { register, error, clearErrors, isAuthenticated } = authContext;
+  const { register, error, clearErrors, token } = authContext;
 
   const [user, setUser] = useState({
     name: "",
@@ -44,7 +44,7 @@ const SignUpPage = () => {
   useEffect(() => {
     document.title = "SignUp | BookIt";
 
-    if (isAuthenticated) {
+    if (token && token !== "undefined") {
       history.push(ROUTES.BOOKING);
     }
     if (error) {
@@ -52,7 +52,7 @@ const SignUpPage = () => {
       clearErrors();
       setIsLoading(false);
     }
-  }, [clearErrors, error, isAuthenticated, history]);
+  }, [clearErrors, error, token, history]);
   return (
     <>
       <Styled>

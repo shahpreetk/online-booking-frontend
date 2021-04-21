@@ -23,7 +23,7 @@ const LoginPage = () => {
   const isInvalid = password === "" || email === "";
   const history = useHistory();
   const authContext = useContext(AuthContext);
-  const { login, error, clearErrors, isAuthenticated } = authContext;
+  const { login, error, clearErrors, token } = authContext;
 
   const onChange = (e) => {
     setUser({
@@ -45,7 +45,7 @@ const LoginPage = () => {
   useEffect(() => {
     document.title = "Login | BookIt";
 
-    if (isAuthenticated) {
+    if (token && token !== "undefined") {
       history.push(ROUTES.BOOKING);
     }
     if (error) {
@@ -53,7 +53,7 @@ const LoginPage = () => {
       clearErrors();
       setIsLoading(false);
     }
-  }, [clearErrors, error, isAuthenticated, history]);
+  }, [clearErrors, error, token, history]);
   return (
     <>
       <Styled>
