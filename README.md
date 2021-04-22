@@ -1,70 +1,31 @@
-# Getting Started with Create React App
+![online-booking-frontend](https://socialify.git.ci/shahpreetk/online-booking-frontend/image?description=1&descriptionEditable=An%20Online%20Auditorium%20and%20Turf%20Booking%20System%20for%20K.%20J.%20Somaiya%20Institute%20of%20Engineering%20and%20Information%20Technology&font=KoHo&language=1&logo=https%3A%2F%2Fmedia-exp1.licdn.com%2Fdms%2Fimage%2FC510BAQFnU9phh-q1EQ%2Fcompany-logo_200_200%2F0%2F1557380275702%3Fe%3D2159024400%26v%3Dbeta%26t%3D7euqfcdyvheurc8tTRXe03ZISsHBTzIGedNCxEv6v3Q&owner=1&pattern=Charlie%20Brown&theme=Light)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# ⚽️ Online Auditorium and Turf Booking System
 
-## Available Scripts
+### An Abstract
 
-In the project directory, you can run:
+Ease of usage is the motive behind digitization in the 21st century. The basic human needs of food, shelter and clothing are now a click away and can be accessed with convenience through websites & apps like Zomato, Airbnb, Flipkart and Myntra to name a few. As of 2019, the world population is 7.6 billion people of which 4.66 billion are active internet users worldwide and the number is increasing every day. As we have paved our way towards the digitisation of the country, we realised that everything starts small. So, we looked around in our college and found that there is one aspect that could be upgraded to an automated software system and that’s how we came up with the idea of an Online Auditorium & Turf Booking System. Our website allows a user to book a turf or auditorium, multi-select the time slots, customize the bookings with addons, has a secure payment system with multiple payment options and a page to manage all the successful bookings. And all of this is available through simple user registration. Thus our framework increases the robustness of the booking procedure and at the same time simplifies the process, paving way for convenience, accessibility, reliability and feasibility.
 
-### `npm start`
+### Introduction
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+The web applications in our daily life are growing and there is an increasing trend in the utilization of online booking apps which helps in reducing manual work and offer user comfort. At the moment, our college auditorium and turf booking system are in such a way that the user has to be physically present to finalise the reservation and make payments. To simplify and speed up this process, we came up with an online system wherein the user can book the auditorium and turf along with some additional features like purchasing add-ons and completing the payment on the web app itself. This empowers self-reliance and increases efficiency.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Currently, the traditional method of keeping records requires storing a hard copy of appointments. Retrieval of records in such cases and the need for large storage facilities are some serious limitations of manual record-keeping. BookIt is a website that will be used to make online booking of auditorium and turf present at K. J. Somaiya Institute of Engineering and Information Technology (KJSIEIT).
 
-### `npm test`
+It uses the latest web technologies like React for frontend, Express server in the backend, NoSQL MongoDB database for storing data and stripe for secure payment gateway. It can be used by our college students and professors as well as outsiders to book the Auditorium and Turf. To conclude, BookIt will reduce the time spent for making a booking, the digital process will eliminate the need to physically check records, filtering and managing data will become easier and our project will increase the overall efficiency of the current system.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### 👩‍💻 Author
 
-### `npm run build`
+This project was built with ❤️ by [Preet Shah](https://github.com/shahpreetk).
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### 🛠 Built with
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+UI - First, we sketched the wireframe of the website after which the prototype and designing were done on Adobe XD.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Frontend - The frontend of this online booking system is made using the Reactjs UI library. It helps in making a single-page application (SPA) that ensures fast rendering. React-Bootstrap with Styled Components has been used for the styling of the web app. To give the user a feeling of content being loaded, we show a loader using react-loading-skeleton after which the backend sends the data using Axios. The state management of the cart has been done using use-shopping-cart and the checkout is managed by Stripe payment system.
 
-### `npm run eject`
+Backend - The API system is made using Express, a lightweight Nodejs library. The data is saved on a NoSQL MongoDB database. To welcome the user after signup, we send an email using the Sendgrid service. For the security and privacy of the user, we use bcrypt to hash the user’s password in the database, and session authentication is done via JSON web tokens.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### 🖥 Where can I find it?
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+You can find BookIt [here](https://kjsieit-onlinebooking.netlify.app/)!!
