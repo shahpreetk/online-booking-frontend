@@ -24,8 +24,6 @@ UI - First, we sketched the wireframe of the website after which the prototype a
 
 Frontend - The frontend of this online booking system is made using the Reactjs UI library. It helps in making a single-page application (SPA) that ensures fast rendering. React-Bootstrap with Styled Components has been used for the styling of the web app. To give the user a feeling of content being loaded, we show a loader using react-loading-skeleton after which the backend sends the data using Axios. The state management of the cart has been done using use-shopping-cart and the checkout is managed by Stripe payment system.
 
-Backend - The API system is made using Express, a lightweight Nodejs library. The data is saved on a NoSQL MongoDB database. To welcome the user after signup, we send an email using the Sendgrid service. For the security and privacy of the user, we use bcrypt to hash the user’s password in the database, and session authentication is done via JSON web tokens.
-
 ### 🔨 Installation and Setting it Up
 
 If you are interested in setting up the project on your local machine you can simply follow these steps -
