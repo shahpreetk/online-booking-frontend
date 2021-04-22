@@ -39,4 +39,11 @@ If you are interested in setting up the project on your local machine you can si
 ### 🖥 Where can I find it?
 
 You can find the frontend of BookIt [here](https://kjsieit-onlinebooking.netlify.app/)!!
+
 And the backend of BookIt can be found [here](https://onlinebooking-backend.herokuapp.com)!!
+
+The code to the backend of the project can be found at this [repository](https://github.com/shahpreetk/beproject-backend)!!
+
+### 🙈 A kind request
+
+This was my first complete MERN stack project and if you like it please do give it a star⭐️. Thank you!!😁
