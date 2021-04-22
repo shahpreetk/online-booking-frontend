@@ -30,9 +30,13 @@ If you are interested in setting up the project on your local machine you can si
 
 - Clone the repository
 
+- In the root of the folder, make a new `.env` file
+
+- In the `.env` file add your [Stripe Public/Publishable Key](https://stripe.com/docs/keys) as `REACT_APP_STRIPE_PUBLIC_KEY=YOUR_PUBLIC_KEY`
+
 - Run `npm install`
 
-- Run `npm start`
+- Run `npm start` and the project will be live!
 
 ### 🖥 Where can I find it?
 
@@ -47,3 +51,8 @@ The code to the backend of the project can be found at this [repository](https:/
 This was my first complete MERN stack project and if you like it please do give it a star ⭐️.
 
 Thank you!! 😁
+
+### 📝 License
+
+This project is licensed under [GNU General Public License v3.0
+GNU GPLv3](https://spdx.org/licenses/GPL-3.0-or-later.html)

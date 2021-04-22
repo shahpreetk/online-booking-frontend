@@ -28,9 +28,8 @@ const Success = lazy(() => import("./pages/Success"));
 const UnSuccessful = lazy(() => import("./pages/UnSuccessful"));
 const ProfilePage = lazy(() => import("./pages/ProfilePage"));
 const NotFound = lazy(() => import("./pages/NotFound"));
-const stripePromise = loadStripe(
-  "pk_test_51IYTLkSGnbQ252OAWnErHwp2IeWlrGhOlFDh2MqsgZ9nSMgBQh0B5e2a0VvqxlsnmmhunMjp7mdnnPU40lqLH3qZ00mfGM5EAi"
-);
+
+const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
 
 axios.defaults.baseURL = "https://onlinebooking-backend.herokuapp.com";
 
