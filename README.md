@@ -46,4 +46,5 @@ The code to the backend of the project can be found at this [repository](https:/
 
 ### 🙈 A kind request
 
-This was my first complete MERN stack project and if you like it please do give it a star⭐️. Thank you!!😁
+This was my first complete MERN stack project and if you like it please do give it a star ⭐️. \n
+Thank you!! 😁
