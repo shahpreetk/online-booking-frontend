@@ -26,6 +26,16 @@ Frontend - The frontend of this online booking system is made using the Reactjs 
 
 Backend - The API system is made using Express, a lightweight Nodejs library. The data is saved on a NoSQL MongoDB database. To welcome the user after signup, we send an email using the Sendgrid service. For the security and privacy of the user, we use bcrypt to hash the user’s password in the database, and session authentication is done via JSON web tokens.
 
+### 🔨 Installation and Setting it Up
+
+If you are interested in setting up the project on your local machine you can simply follow these steps -
+
+- Clone the repository
+
+- Run `npm install`
+
+- Run ``npm start`
+
 ### 🖥 Where can I find it?
 
 You can find the frontend of BookIt [here](https://kjsieit-onlinebooking.netlify.app/)!!
