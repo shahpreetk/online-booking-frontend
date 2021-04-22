@@ -2,11 +2,11 @@
 
 # ⚽️ Online Auditorium and Turf Booking System
 
-### An Abstract
+### 👩‍🏫 Abstract
 
 Ease of usage is the motive behind digitization in the 21st century. The basic human needs of food, shelter and clothing are now a click away and can be accessed with convenience through websites & apps like Zomato, Airbnb, Flipkart and Myntra to name a few. As of 2019, the world population is 7.6 billion people of which 4.66 billion are active internet users worldwide and the number is increasing every day. As we have paved our way towards the digitisation of the country, we realised that everything starts small. So, we looked around in our college and found that there is one aspect that could be upgraded to an automated software system and that’s how we came up with the idea of an Online Auditorium & Turf Booking System. Our website allows a user to book a turf or auditorium, multi-select the time slots, customize the bookings with addons, has a secure payment system with multiple payment options and a page to manage all the successful bookings. And all of this is available through simple user registration. Thus our framework increases the robustness of the booking procedure and at the same time simplifies the process, paving way for convenience, accessibility, reliability and feasibility.
 
-### Introduction
+### 📜 Introduction
 
 The web applications in our daily life are growing and there is an increasing trend in the utilization of online booking apps which helps in reducing manual work and offer user comfort. At the moment, our college auditorium and turf booking system are in such a way that the user has to be physically present to finalise the reservation and make payments. To simplify and speed up this process, we came up with an online system wherein the user can book the auditorium and turf along with some additional features like purchasing add-ons and completing the payment on the web app itself. This empowers self-reliance and increases efficiency.
 
