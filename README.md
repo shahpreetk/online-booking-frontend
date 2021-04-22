@@ -34,7 +34,7 @@ If you are interested in setting up the project on your local machine you can si
 
 - Run `npm install`
 
-- Run ``npm start`
+- Run `npm start`
 
 ### 🖥 Where can I find it?
 
