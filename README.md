@@ -28,4 +28,5 @@ Backend - The API system is made using Express, a lightweight Nodejs library. Th
 
 ### 🖥 Where can I find it?
 
-You can find BookIt [here](https://kjsieit-onlinebooking.netlify.app/)!!
+You can find the frontend of BookIt [here](https://kjsieit-onlinebooking.netlify.app/)!!
+And the backend of BookIt can be found [here](https://onlinebooking-backend.herokuapp.com)!!
