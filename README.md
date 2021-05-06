@@ -1,4 +1,4 @@
-![online-booking-frontend](https://socialify.git.ci/shahpreetk/online-booking-frontend/image?description=1&descriptionEditable=An%20Online%20Auditorium%20and%20Turf%20Booking%20System%20for%20K.%20J.%20Somaiya%20Institute%20of%20Engineering%20and%20Information%20Technology&font=KoHo&language=1&logo=https%3A%2F%2Fmedia-exp1.licdn.com%2Fdms%2Fimage%2FC510BAQFnU9phh-q1EQ%2Fcompany-logo_200_200%2F0%2F1557380275702%3Fe%3D2159024400%26v%3Dbeta%26t%3D7euqfcdyvheurc8tTRXe03ZISsHBTzIGedNCxEv6v3Q&owner=1&pattern=Charlie%20Brown&theme=Light)
+![online-booking-frontend](./public/assets/github-readme-banner.png)
 
 # ⚽️ Online Auditorium and Turf Booking System
 
