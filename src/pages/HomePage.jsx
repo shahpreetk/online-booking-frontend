@@ -4,7 +4,7 @@ import { Alert, Carousel, Card, Col, Container, Row } from "react-bootstrap";
 import AuthContext from "../context/auth/authContext";
 import Title from "../components/Title";
 import FeaturesCard from "../components/FeaturesCard";
-import ProfileCard from "../components/ProfileCard";
+// import ProfileCard from "../components/ProfileCard";
 
 const HomePage = () => {
   const authContext = useContext(AuthContext);
@@ -85,7 +85,7 @@ const HomePage = () => {
         </Row>
       </Container>
       <Title title="ABOUT KJSIEIT" />
-      <Container style={{ paddingBottom: "20px" }}>
+      <Container style={{ paddingBottom: "40px" }}>
         <Row className="pt-4 pb-2">
           <Col md className="wrapper m-2">
             <Card className="border-0 shadow-sm bg-white rounded">
@@ -109,7 +109,7 @@ const HomePage = () => {
           </Col>
         </Row>
       </Container>
-      <Title title="ABOUT THE MAKERS" />
+      {/* <Title title="ABOUT THE MAKERS" />
       <Container style={{ paddingBottom: "20px" }}>
         <Row className="pt-4 pb-2">
           <Col sm className="wrapper m-1">
@@ -161,7 +161,7 @@ const HomePage = () => {
           </Col>
           <Col sm className="wrapper m-1"></Col>
         </Row>
-      </Container>
+      </Container> */}
     </>
   );
 };
