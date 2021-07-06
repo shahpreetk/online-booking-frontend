@@ -4,7 +4,6 @@ import { Alert, Carousel, Card, Col, Container, Row } from "react-bootstrap";
 import AuthContext from "../context/auth/authContext";
 import Title from "../components/Title";
 import FeaturesCard from "../components/FeaturesCard";
-// import ProfileCard from "../components/ProfileCard";
 
 const HomePage = () => {
   const authContext = useContext(AuthContext);
@@ -109,59 +108,6 @@ const HomePage = () => {
           </Col>
         </Row>
       </Container>
-      {/* <Title title="ABOUT THE MAKERS" />
-      <Container style={{ paddingBottom: "20px" }}>
-        <Row className="pt-4 pb-2">
-          <Col sm className="wrapper m-1">
-            <ProfileCard
-              photo="/assets/amitsir-photo.jpg"
-              name="Prof. Amit Kukreja"
-              designation="Assistant Professor"
-              linkedin=""
-              github=""
-            />
-          </Col>
-          <Col sm className="wrapper m-1">
-            <ProfileCard
-              photo="/assets/preet-photo.jpeg"
-              name="Preet Shah"
-              designation="Student"
-              linkedin="https://www.linkedin.com/in/shahpreetk/"
-              github="https://github.com/shahpreetk"
-            />
-          </Col>
-          <Col sm className="wrapper m-1">
-            <ProfileCard
-              photo="/assets/harsh-photo.jpeg"
-              name="Harsh Shah"
-              designation="Student"
-              linkedin="https://www.linkedin.com/in/harsh-shah-b3291419a"
-              github=""
-            />
-          </Col>
-        </Row>
-        <Row className="mt-2">
-          <Col sm className="wrapper m-1">
-            <ProfileCard
-              photo="/assets/meet-photo.jpg"
-              name="Meet Shah"
-              designation="Student"
-              linkedin="https://www.linkedin.com/in/meet-shah-49578516b"
-              github=""
-            />
-          </Col>
-          <Col sm className="wrapper m-1">
-            <ProfileCard
-              photo="/assets/disha-photo.jpeg"
-              name="Disha Parekh"
-              designation="Student"
-              linkedin="https://www.linkedin.com/in/disha-parekh-949902203"
-              github=""
-            />
-          </Col>
-          <Col sm className="wrapper m-1"></Col>
-        </Row>
-      </Container> */}
     </>
   );
 };
